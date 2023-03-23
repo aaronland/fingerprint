@@ -1,4 +1,4 @@
-const cache_name = 'fingerprint-v0.0.2';
+const cache_name = 'fingerprint-v0.0.4';
 
 const app_files = [
     // HTML
@@ -66,24 +66,24 @@ addEventListener("message", (event) => {
 
 
 self.addEventListener('fetch', (e) => {
+
+    // https://developer.mozilla.org/en-US/docs/Web/API/Cache
     
     e.respondWith((async () => {
 
 	console.log("fetch", cache_name, e.request.url);
 	
-	if (! navigator.onLine){
-	    
-	    const r = await caches.match(e.request);
-	    console.log(`[Service Worker] Fetching resource: ${e.request.url}`);
-	    
-	    if (r) {
-		console.log("return cache", e.request.url);
-		return r;
-	    }
+	const cache = await caches.open(cache_name);
+	const r = await cache.match(e.request);
+	
+	console.log(`[Service Worker] Fetching resource: ${e.request.url}`);
+	
+	if (r) {
+	    console.log("return cache", e.request.url);
+	    return r;
 	}
 	
 	const response = await fetch(e.request);
-	const cache = await caches.open(cache_name);
 	
 	console.log(`[Service Worker] Caching new resource: ${e.request.url}`);
 	cache.put(e.request, response.clone());

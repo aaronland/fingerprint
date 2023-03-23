@@ -1,0 +1,171 @@
+/* Tags */
+
+body {
+    margin:0px;
+    width:100%;
+    height:100%;
+
+    font-family:sans-serif;
+
+}
+
+dialog {
+	width: 70vw;
+}
+
+footer {
+	position: fixed;
+	bottom: 0;
+	width: 100vw;	
+	margin: 0 auto;
+	padding-left:5vw;
+	padding-right:5vw;
+	display:flex;
+	justify-content:right;
+	border-top:1px solid #ccc;
+	background-color: #fff;
+}
+
+/* Identifiers */
+
+#current-colour-preview {
+	height:20px;
+	width:20px;
+	border-radius:20px;
+	border:solid thin;
+}
+
+#draw {
+	background-color: #ccc;
+}
+
+#editor {
+	height: 93vh;
+	// border-bottom: 1px solid red;
+}
+
+#erase {
+	display:none;
+}
+
+#export-dialog-dimension-wrapper {
+	display:none;
+}
+
+#footer-menu {
+	position: fixed;
+	bottom: 1.5vh;
+	left: 1.25vw;
+}
+
+#footer-menu-contents {
+	position: fixed;
+	bottom: 7vh;
+	left: 0;
+	border-radius:0px;
+	display:none;
+}
+
+#menu-contents-export {
+	display:none;
+}
+
+#menu-contents-offline {
+	display:none;
+}
+
+#menu-contents-fullscreen {
+	display:none;
+}
+
+#menu-contents-list {
+	display:none;
+}
+
+#menu-contents-new {
+	display:none;
+}
+
+#menu-contents-remove {
+	display:none;
+}
+
+#menu-contents-save {
+	display:none;
+}
+
+#menu-contents-share {
+	display:none;
+}
+
+#menu-contents-viewsource {
+	display:none;
+}
+
+#redo {
+	display: none;
+}
+
+#show-colour-picker {
+	padding-left: .75rem !important;
+}
+
+#undo {
+	display: none;
+}
+
+#view-source {
+	padding: 1em;
+	overflow:scroll;
+	font-family:monospace;
+	font-size:small;
+}
+
+#view-source-copy {
+	justify-content: right;
+	display:none;
+	margin-bottom:1.5rem;
+}
+
+#wrapper {
+	width: 100vw;
+	height: 93vh;
+	margin: 0 auto;
+}
+
+/* Classes */
+
+.dialog-close {
+	display:flex !important;
+	justify-content:right !important;
+}
+
+.list-group-item {
+	border: none !important;
+}
+
+.list-group-item label {
+	font-size: small;
+	color:#666;
+	margin-left:.5rem;
+	display:inline-block;
+}
+
+.share-dialog-dimension-wrapper {
+	display:none;
+}
+
+@media (max-width: 500px) {
+
+	#footer-menu {
+		left: 4.5vw;			
+	}
+
+	#footer-menu-contents {
+		bottom: 7vh;
+	}
+
+	#show-colour-picker {
+		padding-top:.6rem;
+	}
+}

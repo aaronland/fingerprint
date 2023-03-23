@@ -1,0 +1,11 @@
+{
+    "$schema": "https://json.schemastore.org/web-manifest-combined.json",
+    "name": "Fingerprint",
+    "short_name": "fingerprint",
+    "description": "Fingerprint",
+    "icons": [],
+    "start_url": ".",
+    "display": "fullscreen",
+    "theme_color": "#fff",
+    "background_color": "#fff"
+}

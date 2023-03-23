@@ -46,8 +46,11 @@ fingerprint.application = (function(){
 	    
 	    */
 	    
-	    var offline_scope = '/panels2/';
-	    fingerprint.offline.init(offline_scope);
+	    var offline_scope = document.body.getAttribute("data-offline-scope");
+
+	    if (offline_scope){
+		fingerprint.offline.init(offline_scope);
+	    }
 
 	},
 

@@ -20,7 +20,10 @@ So, this is that tool (sort of) but a tool whose native format is SVG. This is a
 
 https://aaronland.github.io/fingerprint/
 
-_Note: Offline support (service workers) for the demo application is not enabled at this time (see notes below)._
+Notes:
+
+* This has been tests on desktop Firefox and Safari and iOS.
+* Offline support (service workers) for the demo application is not enabled at this time (see comments below).
 
 ## Features
 

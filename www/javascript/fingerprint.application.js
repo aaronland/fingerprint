@@ -29,23 +29,6 @@ fingerprint.application = (function(){
 		fingerprint.menu.hide_offline_control();		
 	    });
 
-	    /*
-
-	    // https://stackoverflow.com/questions/41636754/how-to-clear-a-service-worker-cache-in-firefox
-	       
-	    caches.keys().then(function (cachesNames) {
-		console.log("Delete " + document.defaultView.location.origin + " caches");
-		return Promise.all(cachesNames.map(function (cacheName) {
-		    return caches.delete(cacheName).then(function () {
-			console.log("Cache with name " + cacheName + " is deleted");
-		    });
-		}))
-	    }).then(function () {
-		console.log("All " + document.defaultView.location.origin + " caches are deleted");
-	    });
-	    
-	    */
-	    
 	    var offline_scope = document.body.getAttribute("data-offline-scope");
 
 	    if (offline_scope){

@@ -43,7 +43,7 @@ Images can be "shared" (as PNG and SVG documents) on devices that support the [W
 
 ![](docs/images/fingerprint-local-640.jpg)
 
-There is also support for saving and loading individual drawings to the browser's local cache, using the [localforage](https://github.com/localForage/localForage) library. The application will also "auto save" the current drawing every 60 seconds (to a cache entry named `work in progress`). This is largely to account for the fact that there are many scenarios in a web application context in which a drawing can be lost.
+There is also support for saving and loading individual drawings to the browser's local cache, using the [localforage](https://github.com/localForage/localForage) library. The application will also "auto save" the current drawing every 60 seconds to a cache entry named `work in progress`. This is largely to account for the fact that there are many scenarios in a web application context by which a drawing can be lost.
 
 ### Offline support
 

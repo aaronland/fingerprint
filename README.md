@@ -47,6 +47,8 @@ There is also support for saving and loading individual drawings to the browser'
 
 ### Offline support
 
+![](docs/images/fingerprint-offline-640.jpg)
+
 The application is designed to work offline for devices that support the [Service Workers API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API). This works but should probably still be considered unstable. Support, or at least documentation, for Service Workers across platforms is inconsistent and they appear to be causing problems with the local caching functionality.
 
 ### Colour picker
@@ -54,6 +56,12 @@ The application is designed to work offline for devices that support the [Servic
 ![](docs/images/fingerprint-colour-640.jpg)
 
 Unfortunately the HTML 5 colour picker `input` control specification does not require a built-in opacity control so there is more button-pressing to adjust colours than I would like. I suppose I could use a pure JavaScript implementation but that is still a project for another day.
+
+### View source
+
+![](docs/images/fingerprint-viewsource-640.jpg)
+
+On platform's where the `Clipboard` API enabled the "view source" window also allows you to copy the SVG representation of an image directly to your device's clipboard.
 
 ## Still to do
 
@@ -80,6 +88,7 @@ Suggestions, or contributions, on how to implement any of these features is welc
 * https://developer.mozilla.org/en-US/docs/Web/API/File_API
 * https://developer.mozilla.org/en-US/docs/Web/API/Web_Share_API
 * https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API
+* https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API
 * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/color
 
 ### Graphic design

@@ -77,6 +77,7 @@ Suggestions, or contributions, on how to implement any of these features is welc
 * https://developer.mozilla.org/en-US/docs/Web/API/File_API
 * https://developer.mozilla.org/en-US/docs/Web/API/Web_Share_API
 * https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API
+* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/color
 
 ### Graphic design
 

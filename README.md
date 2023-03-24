@@ -31,6 +31,8 @@ Notes:
 
 ![](docs/images/fingerprint-import-640.jpg)
 
+![](docs/images/fingerprint-export-640.jpg)
+
 Individual drawings can be exported as PNG, SVG and JSON files on devices that support the [File API](https://developer.mozilla.org/en-US/docs/Web/API/File_API). Drawings, stored in the SVG format, can be re-imported in to the application (assuming support for the `File` API).
 
 ### Sharing
@@ -47,7 +49,7 @@ There is also support for saving and loading individual drawings to the browser'
 
 ### Offline support
 
-![](docs/images/fingerprint-offline-640.jpg)
+![](docs/images/fingerprint-offline-640.png)
 
 The application is designed to work offline for devices that support the [Service Workers API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API). This works but should probably still be considered unstable. Support, or at least documentation, for Service Workers across platforms is inconsistent and they appear to be causing problems with the local caching functionality.
 
@@ -59,7 +61,7 @@ Unfortunately the HTML 5 colour picker `input` control specification does not re
 
 ### View source
 
-![](docs/images/fingerprint-viewsource-640.jpg)
+![](docs/images/fingerprint-viewsource-640.png)
 
 On platform's where the `Clipboard` API enabled the "view source" window also allows you to copy the SVG representation of an image directly to your device's clipboard.
 

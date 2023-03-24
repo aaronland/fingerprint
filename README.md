@@ -1,10 +1,10 @@
 # fingerprint
 
-![](docs/images/fingerprint-controls-640.jpg)
-
 None of the other digital drawing tools were my jam, so I wrote my own. It's called `fingerprint`.
 
 ## Description
+
+![](docs/images/fingerprint-controls-640.jpg)
 
 `fingerprint` is an opionated vector drawing application built Dimitry Baranovskiy's [raphael.js](https://github.com/DmitryBaranovskiy/raphael) and a modified version of Ian Li's [raphael-sketchpad](https://github.com/ianli/raphael-sketchpad/).
 
@@ -23,12 +23,6 @@ https://aaronland.github.io/fingerprint
 _Note: Offline support (service workers) for the demo application is not enabled at this time (see notes below)._
 
 ## Features
-
-### Colour picker
-
-![](docs/images/fingerprint-colour-640.jpg)
-
-Unfortunately the HTML 5 colour picker `input` control specification does not require a built-in opacity control so there is more button-pressing to adjust colours than I would like. I suppose I could use a pure JavaScript implementation but that is still a project for another day.
 
 ### Import and Export
 
@@ -52,11 +46,17 @@ There is also support for saving and loading individual drawings to the browser'
 
 The application is designed to work offline for devices that support the [Service Workers API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API). This works but should probably still be considered unstable. Support, or at least documentation, for Service Workers across platforms is inconsistent and they appear to be causing problems with the local caching functionality.
 
+### Colour picker
+
+![](docs/images/fingerprint-colour-640.jpg)
+
+Unfortunately the HTML 5 colour picker `input` control specification does not require a built-in opacity control so there is more button-pressing to adjust colours than I would like. I suppose I could use a pure JavaScript implementation but that is still a project for another day.
+
 ## Still to do
 
 The goal for the application is to develop the ability to:
 
-* [Zoom in and out of an SVG canvas.](https://github.com/aaronland/fingerprint/issues/1)
+* [Zoom in and out of an SVG canvas.](https://github.com/aaronland/fingerprint/issues/1) _This is probably the next thing I work on since I make these drawings with my fingers and the inability to zoom in to an image makes detailed work difficult._
 * [Enlarge (or shrink) the SVG canvas, redrawing the current image in the center of the (new) canvas.](https://github.com/aaronland/fingerprint/issues/2)
 * [Smoothing of paths using Bezier curves, or a functional equivalent.](https://github.com/aaronland/fingerprint/issues/4)
 

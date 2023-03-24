@@ -55,7 +55,7 @@ The application is designed to work offline for devices that support the [Servic
 
 ### Undo and Redo (and delete an individual path)
 
-The application maintains a history of paths drawn so you undo or redo individual paths drawn. There is also an option to delete an individual path on screen, regardless of whether or not it is in the application's current history. I almost never use this feature and am on the fence about whether to keep it in the interface.
+The application maintains a history of paths drawn so you can undo or redo individual paths. There is also an option to delete an individual path on screen, regardless of whether or not it is in the application's current history. I almost never use this feature and am on the fence about whether to keep it in the interface.
 
 ### Colour picker
 

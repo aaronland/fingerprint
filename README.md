@@ -53,6 +53,10 @@ The application is designed to work offline for devices that support the [Servic
 
 ![](docs/images/fingerprint-offline-640.png)
 
+### Undo and Redo (and delete an individual path)
+
+The application maintains a history of paths drawn so you undo or redo individual paths drawn. There is also an option to delete an individual path on screen, regardless of whether or not it is in the application's current history. I almost never use this feature and am on the fence about whether to keep it in the interface.
+
 ### Colour picker
 
 Unfortunately the HTML 5 colour picker `input` control specification does not require a built-in opacity control so there is more button-pressing to adjust colours than I would like. I suppose I could use a pure JavaScript implementation but that is still a project for another day.

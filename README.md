@@ -31,7 +31,7 @@ Notes:
 
 ![](docs/images/fingerprint-import-640.jpg)
 
-![](docs/images/fingerprint-export-640.jpg)
+![](docs/images/fingerprint-export-640.png)
 
 Individual drawings can be exported as PNG, SVG and JSON files on devices that support the [File API](https://developer.mozilla.org/en-US/docs/Web/API/File_API). Drawings, stored in the SVG format, can be re-imported in to the application (assuming support for the `File` API).
 

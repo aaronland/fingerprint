@@ -29,41 +29,41 @@ Notes:
 
 ### Import and Export
 
+Individual drawings can be exported as PNG, SVG and JSON files on devices that support the [File API](https://developer.mozilla.org/en-US/docs/Web/API/File_API). Drawings, stored in the SVG format, can be re-imported in to the application (assuming support for the `File` API).
+
 ![](docs/images/fingerprint-import-640.jpg)
 
 ![](docs/images/fingerprint-export-640.png)
 
-Individual drawings can be exported as PNG, SVG and JSON files on devices that support the [File API](https://developer.mozilla.org/en-US/docs/Web/API/File_API). Drawings, stored in the SVG format, can be re-imported in to the application (assuming support for the `File` API).
-
 ### Sharing
-
-![](docs/images/fingerprint-share-640.png)
 
 Images can be "shared" (as PNG and SVG documents) on devices that support the [Web Share API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Share_API).
 
-### Local storage
+![](docs/images/fingerprint-share-640.png)
 
-![](docs/images/fingerprint-local-640.jpg)
+### Local storage
 
 There is also support for saving and loading individual drawings to the browser's local cache, using the [localforage](https://github.com/localForage/localForage) library. The application will also "auto save" the current drawing every 60 seconds to a cache entry named `work in progress`. This is largely to account for the fact that there are many scenarios in a web application context by which a drawing can be lost.
 
-### Offline support
+![](docs/images/fingerprint-local-640.jpg)
 
-![](docs/images/fingerprint-offline-640.png)
+### Offline support
 
 The application is designed to work offline for devices that support the [Service Workers API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API). This works but should probably still be considered unstable. Support, or at least documentation, for Service Workers across platforms is inconsistent and they appear to be causing problems with the local caching functionality.
 
-### Colour picker
+![](docs/images/fingerprint-offline-640.png)
 
-![](docs/images/fingerprint-colour-640.jpg)
+### Colour picker
 
 Unfortunately the HTML 5 colour picker `input` control specification does not require a built-in opacity control so there is more button-pressing to adjust colours than I would like. I suppose I could use a pure JavaScript implementation but that is still a project for another day.
 
+![](docs/images/fingerprint-colour-640.jpg)
+
 ### View source
 
-![](docs/images/fingerprint-viewsource-640.png)
-
 On platforms where the Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API) is enabled the `view source` window also allows you to copy the SVG representation of an image directly to your device's clipboard. If not you'll need to manually copy and paste the SVG.
+
+![](docs/images/fingerprint-viewsource-640.png)
 
 ## Still to do
 

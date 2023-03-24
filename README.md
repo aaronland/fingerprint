@@ -1,5 +1,7 @@
 # fingerprint
 
+![](docs/images/fingerprint-controls-640.jpg)
+
 None of the other digital drawing tools were my jam, so I wrote my own. It's called `fingerprint`.
 
 ## Description
@@ -22,15 +24,27 @@ _Note: Offline support (service workers) for the demo application is not enabled
 
 ## Features
 
+### Colour picker
+
+![](docs/images/fingerprint-colour-640.jpg)
+
+Unfortunately the HTML 5 colour picker `input` control specification does not require a built-in opacity control so there is more button-pressing to adjust colours than I would like. I suppose I could use a pure JavaScript implementation but that is still a project for another day.
+
 ### Import and Export
+
+![](docs/images/fingerprint-import-640.jpg)
 
 Individual drawings can be exported as PNG, SVG and JSON files on devices that support the [File API](https://developer.mozilla.org/en-US/docs/Web/API/File_API). Drawings, stored in the SVG format, can be re-imported in to the application (assuming support for the `File` API).
 
 ### Sharing
 
+![](docs/images/fingerprint-share-640.png)
+
 Images can be "shared" (as PNG and SVG documents) on devices that support the [Web Share API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Share_API).
 
 ### Local storage
+
+![](docs/images/fingerprint-local-640.jpg)
 
 There is also support for saving and loading individual drawings to the browser's local cache, using the [localforage]() library.
 

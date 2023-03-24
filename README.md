@@ -65,7 +65,7 @@ Unfortunately the HTML 5 colour picker `input` control specification does not re
 
 ### View source
 
-On platforms where the Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API) is enabled the `view source` window also allows you to copy the SVG representation of an image directly to your device's clipboard. If not you'll need to manually copy and paste the SVG.
+On platforms where the [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API) is enabled the `view source` window also allows you to copy the SVG representation of an image directly to your device's clipboard. If not you'll need to manually copy and paste the SVG.
 
 ![](docs/images/fingerprint-viewsource-640.png)
 
@@ -73,7 +73,7 @@ On platforms where the Clipboard API](https://developer.mozilla.org/en-US/docs/W
 
 The goal for the application is to develop the ability to:
 
-* [Zoom in and out of an SVG canvas.](https://github.com/aaronland/fingerprint/issues/1) _This is probably the next thing I work on since I make these drawings with my fingers and the inability to zoom in to an image makes detailed work difficult._
+* [Zoom in and out of an SVG canvas.](https://github.com/aaronland/fingerprint/issues/1) _This is probably the next thing I will work on since I make these drawings with my fingers and the inability to zoom in to an image makes detailed work difficult._
 * [Enlarge (or shrink) the SVG canvas, redrawing the current image in the center of the (new) canvas.](https://github.com/aaronland/fingerprint/issues/2)
 * [Smoothing of paths using Bezier curves, or a functional equivalent.](https://github.com/aaronland/fingerprint/issues/4)
 

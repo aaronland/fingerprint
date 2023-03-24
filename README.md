@@ -63,7 +63,7 @@ Unfortunately the HTML 5 colour picker `input` control specification does not re
 
 ![](docs/images/fingerprint-viewsource-640.png)
 
-On platform's where the `Clipboard` API enabled the "view source" window also allows you to copy the SVG representation of an image directly to your device's clipboard.
+On platforms where the Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API) is enabled the `view source` window also allows you to copy the SVG representation of an image directly to your device's clipboard. If not you'll need to manually copy and paste the SVG.
 
 ## Still to do
 

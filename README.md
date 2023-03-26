@@ -65,15 +65,15 @@ Offline support is disabled by default. To enable offline support adjust the `da
 
 The interaction between an application's [Service Worker definition file](www/sw.js) and the browser's application cache (that caches the files defined by the Service Worker) remains a bit of a mystery to me. Specifically, changing the Service Worker's cache key does not always invalidate existing caches. This can make updating an instance of the `fingerprint` application that has enabled offline support challenging where "challenging" means that changes aren't reflected and the only way to deal with the problem is to remove all the application data for the entire domain (hosting the `fingerprint` application). That's not ideal so, there is also a `settings` menu option when offline support is enabled.
 
-![](docs/images/fingerprint-settings-640.png)
+![](docs/images/fingerprint-settings-640.jpg)
 
 The settings menu will open a new dialog with the option to purge the application cache, but only for the `fingerprint` application.
 
-![](docs/images/fingerprint-purge-640.png)
+![](docs/images/fingerprint-purge-640.jpg)
 
 Purging the application will trigger a confirmation dialog. If you are purging the application cache will offline you will be presented with a second confirmation dialog to ensure that's what you really want to do. Purging the application cache while you are offline will effectively disable offline support for the `fingerprint` and the application won't work again until you are online again and can fetch the application files from source.
 
-![](docs/images/fingerprint-purge-really-640.png)
+![](docs/images/fingerprint-purge-really-640.jpg)
 
 ### Undo and Redo (and delete an individual path)
 

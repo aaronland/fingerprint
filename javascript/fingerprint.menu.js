@@ -113,6 +113,19 @@ fingerprint.menu = (function(){
 	hide_remove_control: function(){
 	    self.toggle_control("menu-contents-remove");
 	},
+
+	show_settings_control: function(){
+	    self.toggle_control("menu-contents-settings", "block");	    
+	},
+
+	hide_settings_control: function(){
+	    self.toggle_control("menu-contents-settings");
+	},
+	
+	show_settings_dialog: function(){
+	    var el = document.getElementById("settings-dialog");
+	    el.showModal();
+	},
 	
 	toggle_control: function(id, style){
 	    var el = document.getElementById(id);

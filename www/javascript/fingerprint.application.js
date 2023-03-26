@@ -31,10 +31,14 @@ fingerprint.application = (function(){
 
 	    var offline_scope = document.body.getAttribute("data-offline-scope");
 
+	    // For the time being this check is enough to determine whether
+	    // or not to show the settings menu control. Some day if there
+	    // are other settings this will need to be revisited.
+	    
 	    if (offline_scope){
 		fingerprint.offline.init(offline_scope);
+		fingerprint.menu.show_settings_control();
 	    }
-
 	},
 
     };

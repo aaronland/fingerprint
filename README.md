@@ -25,6 +25,14 @@ Notes:
 * This has been tests on desktop Firefox and Safari and iOS.
 * Offline support (service workers) for the demo application is not enabled at this time (see comments below).
 
+## Install
+
+Copy the `www/index.html.example` file to `www/index.html` and adjust as necessary, then open in a web browser.
+
+The reason for this extra step is that offline support is configured via the `data-offline-scope` property of the `body` element in the index file. By default this is empty which signals that offline support is disabled. Rather than assume everyone will have the same "scope" (the URI path under which the offline application is configured) it is left as a deliberate step for each user to configure.
+
+Consult the [Offline support](https://github.com/aaronland/fingerprint#offline-support) section for a longer discussion about how offline support works (and sometimes doesn't work).
+
 ## Features
 
 ### Import and Export
@@ -53,6 +61,20 @@ The application is designed to work offline for devices that support the [Servic
 
 ![](docs/images/fingerprint-offline-640.png)
 
+Offline support is disabled by default. To enable offline support adjust the `data-offline-scope` attribute of the `body` in the `index.html` to be the value of [the scope used to register the Service Worker](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers#registering_your_worker).
+
+The interaction between an application's [Service Worker definition file](www/sw.js) and the browser's application cache (that caches the files defined by the Service Worker) remains a bit of a mystery to me. [Specifically, changing the Service Worker's cache key does not always invalidate existing caches.](https://stackoverflow.com/questions/41636754/how-to-clear-a-service-worker-cache-in-firefox/41675764#41675764) This can make updating an instance of the `fingerprint` application that has enabled offline support challenging where "challenging" means that changes aren't reflected and the only way to deal with the problem is to remove all the application data for the entire domain (hosting the `fingerprint` application). That's not ideal so, there is also a `settings` menu option when offline support is enabled.
+
+![](docs/images/fingerprint-settings-640.jpg)
+
+The settings menu will open a new dialog with the option to purge the application cache, but only for the `fingerprint` application.
+
+![](docs/images/fingerprint-purge-640.jpg)
+
+Purging the application will trigger a confirmation dialog. If you are purging the application cache will offline you will be presented with a second confirmation dialog to ensure that's what you really want to do. Purging the application cache while you are offline will effectively disable offline support for the `fingerprint` and the application won't work again until you are online again and can fetch the application files from source.
+
+![](docs/images/fingerprint-purge-really-640.jpg)
+
 ### Undo and Redo (and delete an individual path)
 
 The application maintains a history of paths drawn so you can undo or redo individual paths. There is also an option to delete an individual path on screen, regardless of whether or not it is in the application's current history. I almost never use this feature and am on the fence about whether to keep it in the interface.
@@ -69,7 +91,7 @@ Unfortunately the HTML 5 colour picker `input` control specification does not re
 
 On platforms where the [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API) is enabled the `view source` window also allows you to copy the SVG representation of an image directly to your device's clipboard. If not you'll need to manually copy and paste the SVG.
 
-![](docs/images/fingerprint-viewsource-640.png)
+![](docs/images/fingerprint-viewsource-640.jpg)
 
 ## Still to do
 

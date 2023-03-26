@@ -1,4 +1,4 @@
-const cache_name = 'fingerprint-v0.0.5';
+const cache_name = 'fingerprint-v0.0.10';
 
 const app_files = [
     // HTML

@@ -70,6 +70,10 @@ footer {
 	display:none;
 }
 
+#menu-contents-settings {
+	display:none;
+}
+
 #menu-contents-offline {
 	display:none;
 }
@@ -118,7 +122,7 @@ footer {
 	overflow:scroll;
 	font-family:monospace;
 	font-size:x-small;
-	max-height: 20vw;
+	max-height: 40vw;
 	margin-left:1vw;
 	margin-right:1vw;
 	margin-top:1vw;

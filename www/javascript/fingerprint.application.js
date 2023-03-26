@@ -33,8 +33,8 @@ fingerprint.application = (function(){
 
 	    if (offline_scope){
 		fingerprint.offline.init(offline_scope);
+		fingerprint.menu.show_settings_control();
 	    }
-
 	},
 
     };

@@ -1,0 +1,475 @@
+<!doctype html>
+<html>
+  <head>
+    <title>fingerprint</title>
+    <meta charset="utf-8">
+    <!-- https://icons.getbootstrap.com/icons/fingerprint/ -->    
+    <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0iY3VycmVudENvbG9yIiBjbGFzcz0iYmkgYmktZmluZ2VycHJpbnQiIHZpZXdCb3g9IjAgMCAxNiAxNiI+CiAgPHBhdGggZD0iTTguMDYgNi41YS41LjUgMCAwIDEgLjUuNXYuNzc2YTExLjUgMTEuNSAwIDAgMS0uNTUyIDMuNTE5bC0xLjMzMSA0LjE0YS41LjUgMCAwIDEtLjk1Mi0uMzA1bDEuMzMtNC4xNDFhMTAuNSAxMC41IDAgMCAwIC41MDQtMy4yMTNWN2EuNS41IDAgMCAxIC41LS41WiIvPgogIDxwYXRoIGQ9Ik02LjA2IDdhMiAyIDAgMSAxIDQgMCAuNS41IDAgMSAxLTEgMCAxIDEgMCAxIDAtMiAwdi4zMzJjMCAuNDA5LS4wMjIuODE2LS4wNjYgMS4yMjFBLjUuNSAwIDAgMSA2IDguNDQ3Yy4wNC0uMzcuMDYtLjc0Mi4wNi0xLjExNVY3Wm0zLjUwOSAxYS41LjUgMCAwIDEgLjQ4Ny41MTMgMTEuNSAxMS41IDAgMCAxLS41ODcgMy4zMzlsLTEuMjY2IDMuOGEuNS41IDAgMCAxLS45NDktLjMxN2wxLjI2Ny0zLjhhMTAuNSAxMC41IDAgMCAwIC41MzUtMy4wNDhBLjUuNSAwIDAgMSA5LjU2OSA4Wm0tMy4zNTYgMi4xMTVhLjUuNSAwIDAgMSAuMzMuNjI2TDUuMjQgMTQuOTM5YS41LjUgMCAxIDEtLjk1NS0uMjk2bDEuMzAzLTQuMTk5YS41LjUgMCAwIDEgLjYyNS0uMzI5WiIvPgogIDxwYXRoIGQ9Ik00Ljc1OSA1LjgzM0EzLjUwMSAzLjUwMSAwIDAgMSAxMS41NTkgN2EuNS41IDAgMCAxLTEgMCAyLjUgMi41IDAgMCAwLTQuODU3LS44MzMuNS41IDAgMSAxLS45NDMtLjMzNFptLjMgMS42N2EuNS41IDAgMCAxIC40NDkuNTQ2IDEwLjcyIDEwLjcyIDAgMCAxLS40IDIuMDMxbC0xLjIyMiA0LjA3MmEuNS41IDAgMSAxLS45NTgtLjI4N0w0LjE1IDkuNzkzYTkuNzIgOS43MiAwIDAgMCAuMzYzLTEuODQyLjUuNSAwIDAgMSAuNTQ2LS40NDlabTYgLjY0N2EuNS41IDAgMCAxIC41LjVjMCAxLjI4LS4yMTMgMi41NTItLjYzMiAzLjc2MmwtMS4wOSAzLjE0NWEuNS41IDAgMCAxLS45NDQtLjMyN2wxLjA4OS0zLjE0NWMuMzgyLTEuMTA1LjU3OC0yLjI2Ni41NzgtMy40MzVhLjUuNSAwIDAgMSAuNS0uNVoiLz4KICA8cGF0aCBkPSJNMy45MDIgNC4yMjJhNC45OTYgNC45OTYgMCAwIDEgNS4yMDItMi4xMTMuNS41IDAgMCAxLS4yMDguOTc5IDMuOTk2IDMuOTk2IDAgMCAwLTQuMTYzIDEuNjkuNS41IDAgMCAxLS44MzEtLjU1NlptNi43Mi0uOTU1YS41LjUgMCAwIDEgLjcwNS0uMDUyQTQuOTkgNC45OSAwIDAgMSAxMy4wNTkgN3YxLjVhLjUuNSAwIDEgMS0xIDBWN2EzLjk5IDMuOTkgMCAwIDAtMS4zODYtMy4wMjguNS41IDAgMCAxLS4wNTEtLjcwNVpNMy42OCA1Ljg0MmEuNS41IDAgMCAxIC40MjIuNTY4Yy0uMDI5LjE5Mi0uMDQ0LjM5LS4wNDQuNTkgMCAuNzEtLjEgMS40MTctLjI5OCAyLjFsLTEuMTQgMy45MjNhLjUuNSAwIDEgMS0uOTYtLjI3OUwyLjggOC44MjFBNi41MzEgNi41MzEgMCAwIDAgMy4wNTggN2MwLS4yNS4wMTktLjQ5Ni4wNTQtLjczNmEuNS41IDAgMCAxIC41NjgtLjQyMlptOC44ODIgMy42NmEuNS41IDAgMCAxIC40NTYuNTRjLS4wODQgMS0uMjk4IDEuOTg2LS42NCAyLjkzNGwtLjc0NCAyLjA2OGEuNS41IDAgMCAxLS45NDEtLjMzOGwuNzQ1LTIuMDdhMTAuNTEgMTAuNTEgMCAwIDAgLjU4NC0yLjY3OC41LjUgMCAwIDEgLjU0LS40NTZaIi8+CiAgPHBhdGggZD0iTTQuODEgMS4zN0E2LjUgNi41IDAgMCAxIDE0LjU2IDdhLjUuNSAwIDEgMS0xIDAgNS41IDUuNSAwIDAgMC04LjI1LTQuNzY1LjUuNSAwIDAgMS0uNS0uODY1Wm0tLjg5IDEuMjU3YS41LjUgMCAwIDEgLjA0LjcwNkE1LjQ3OCA1LjQ3OCAwIDAgMCAyLjU2IDdhLjUuNSAwIDAgMS0xIDBjMC0xLjY2NC42MjYtMy4xODQgMS42NTUtNC4zMzNhLjUuNSAwIDAgMSAuNzA2LS4wNFpNMS45MTUgOC4wMmEuNS41IDAgMCAxIC4zNDYuNjE2bC0uNzc5IDIuNzY3YS41LjUgMCAxIDEtLjk2Mi0uMjdsLjc3OC0yLjc2N2EuNS41IDAgMCAxIC42MTctLjM0NlptMTIuMTUuNDgxYS41LjUgMCAwIDEgLjQ5LjUxYy0uMDMgMS40OTktLjE2MSAzLjAyNS0uNzI3IDQuNTMzbC0uMDcuMTg3YS41LjUgMCAwIDEtLjkzNi0uMzUxbC4wNy0uMTg3Yy41MDYtMS4zNS42MzQtMi43NC42NjMtNC4yMDJhLjUuNSAwIDAgMSAuNTEtLjQ5WiIvPgo8L3N2Zz4=" type="image/svg+xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/toastify.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/fingerprint.css" />
+  </head>
+  <body data-offline-scope="">
+      
+      <div id="wrapper">
+	  <div id="editor"></div>
+      </div>
+      
+      <footer>
+	  <!-- https://icons.getbootstrap.com/icons/fingerprint/ -->    	  
+	  <div id="footer-menu" onclick="fingerprint.menu.toggle();return false;">
+	      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-fingerprint" viewBox="0 0 16 16">
+  <path d="M8.06 6.5a.5.5 0 0 1 .5.5v.776a11.5 11.5 0 0 1-.552 3.519l-1.331 4.14a.5.5 0 0 1-.952-.305l1.33-4.141a10.5 10.5 0 0 0 .504-3.213V7a.5.5 0 0 1 .5-.5Z"/>
+  <path d="M6.06 7a2 2 0 1 1 4 0 .5.5 0 1 1-1 0 1 1 0 1 0-2 0v.332c0 .409-.022.816-.066 1.221A.5.5 0 0 1 6 8.447c.04-.37.06-.742.06-1.115V7Zm3.509 1a.5.5 0 0 1 .487.513 11.5 11.5 0 0 1-.587 3.339l-1.266 3.8a.5.5 0 0 1-.949-.317l1.267-3.8a10.5 10.5 0 0 0 .535-3.048A.5.5 0 0 1 9.569 8Zm-3.356 2.115a.5.5 0 0 1 .33.626L5.24 14.939a.5.5 0 1 1-.955-.296l1.303-4.199a.5.5 0 0 1 .625-.329Z"/>
+  <path d="M4.759 5.833A3.501 3.501 0 0 1 11.559 7a.5.5 0 0 1-1 0 2.5 2.5 0 0 0-4.857-.833.5.5 0 1 1-.943-.334Zm.3 1.67a.5.5 0 0 1 .449.546 10.72 10.72 0 0 1-.4 2.031l-1.222 4.072a.5.5 0 1 1-.958-.287L4.15 9.793a9.72 9.72 0 0 0 .363-1.842.5.5 0 0 1 .546-.449Zm6 .647a.5.5 0 0 1 .5.5c0 1.28-.213 2.552-.632 3.762l-1.09 3.145a.5.5 0 0 1-.944-.327l1.089-3.145c.382-1.105.578-2.266.578-3.435a.5.5 0 0 1 .5-.5Z"/>
+  <path d="M3.902 4.222a4.996 4.996 0 0 1 5.202-2.113.5.5 0 0 1-.208.979 3.996 3.996 0 0 0-4.163 1.69.5.5 0 0 1-.831-.556Zm6.72-.955a.5.5 0 0 1 .705-.052A4.99 4.99 0 0 1 13.059 7v1.5a.5.5 0 1 1-1 0V7a3.99 3.99 0 0 0-1.386-3.028.5.5 0 0 1-.051-.705ZM3.68 5.842a.5.5 0 0 1 .422.568c-.029.192-.044.39-.044.59 0 .71-.1 1.417-.298 2.1l-1.14 3.923a.5.5 0 1 1-.96-.279L2.8 8.821A6.531 6.531 0 0 0 3.058 7c0-.25.019-.496.054-.736a.5.5 0 0 1 .568-.422Zm8.882 3.66a.5.5 0 0 1 .456.54c-.084 1-.298 1.986-.64 2.934l-.744 2.068a.5.5 0 0 1-.941-.338l.745-2.07a10.51 10.51 0 0 0 .584-2.678.5.5 0 0 1 .54-.456Z"/>
+  <path d="M4.81 1.37A6.5 6.5 0 0 1 14.56 7a.5.5 0 1 1-1 0 5.5 5.5 0 0 0-8.25-4.765.5.5 0 0 1-.5-.865Zm-.89 1.257a.5.5 0 0 1 .04.706A5.478 5.478 0 0 0 2.56 7a.5.5 0 0 1-1 0c0-1.664.626-3.184 1.655-4.333a.5.5 0 0 1 .706-.04ZM1.915 8.02a.5.5 0 0 1 .346.616l-.779 2.767a.5.5 0 1 1-.962-.27l.778-2.767a.5.5 0 0 1 .617-.346Zm12.15.481a.5.5 0 0 1 .49.51c-.03 1.499-.161 3.025-.727 4.533l-.07.187a.5.5 0 0 1-.936-.351l.07-.187c.506-1.35.634-2.74.663-4.202a.5.5 0 0 1 .51-.49Z"/>
+	      </svg>
+	      
+	  </div>
+	  
+	  <ul class="list-group list-group" id="footer-menu-contents">
+	      
+	      <li class="list-group-item" id="menu-contents-share" onclick="fingerprint.menu.toggle();fingerprint.share.share_dialog();return false;" title="share this drawing">
+		  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-share" viewBox="0 0 16 16">
+		      <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/>
+		  </svg>
+		  <label>share</label>
+	      </li>
+	      
+
+	      <li class="list-group-item" id="menu-contents-new" onclick="fingerprint.menu.toggle();fingerprint.drawing.new();return false;" title="create a new drawing">
+		  <!-- https://icons.getbootstrap.com/icons/file-plus/ -->
+		  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-plus" viewBox="0 0 16 16">
+  <path d="M8.5 6a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V10a.5.5 0 0 0 1 0V8.5H10a.5.5 0 0 0 0-1H8.5V6z"/>
+  <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z"/>
+		  </svg>
+		  <label>new</label>		  
+	      </li>
+
+	      <li class="list-group-item" id="menu-contents-remove" onclick="fingerprint.menu.toggle();fingerprint.storage.remove(); return false;" title="remove this drawing from local storage">
+		  <!-- https://icons.getbootstrap.com/icons/file-x/ -->
+		  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-x" viewBox="0 0 16 16">
+		      <path d="M6.146 6.146a.5.5 0 0 1 .708 0L8 7.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 8l1.147 1.146a.5.5 0 0 1-.708.708L8 8.707 6.854 9.854a.5.5 0 0 1-.708-.708L7.293 8 6.146 6.854a.5.5 0 0 1 0-.708z"/>
+		      <path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"/>
+		  </svg>
+		  <label>remove</label>
+	      </li>
+	      		  
+	      <li class="list-group-item" id="menu-contents-list" onclick="fingerprint.menu.toggle();fingerprint.storage.load_dialog();return false;" title="load a drawing from local storage">
+		  <!-- https://icons.getbootstrap.com/icons/card-list/ -->
+		  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-card-list" viewBox="0 0 16 16">
+  <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
+  <path d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8zm0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zM4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
+		  </svg>
+		  <label>open</label>		  
+	      </li>
+
+	      <li class="list-group-item" id="menu-contents-save" onclick="fingerprint.menu.toggle();fingerprint.storage.save_dialog(); return false;" title="save this drawing to local storage">
+		  <!-- https://icons.getbootstrap.com/icons/save/ -->
+		  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-save" viewBox="0 0 16 16">
+		      <path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v7.293l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 9.293V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1H2z"/>
+		  </svg>
+		  <label>save</label>		  		  
+	      </li>
+
+	      
+	      <li class="list-group-item" id="menu-contents-export" onclick="fingerprint.menu.toggle();fingerprint.export.dialog();return false;" title="export this drawing">
+		  <!-- https://icons.getbootstrap.com/icons/download/ -->
+		  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+		      <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+		      <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+		  </svg>
+		  <label>export</label>		  		  		  
+	      </li>
+	      
+	      <li class="list-group-item" id="menu-contents-file" onclick="fingerprint.menu.toggle();fingerprint.import.dialog();return false;" title="import a drawing">
+		  <!-- https://icons.getbootstrap.com/icons/upload/ -->
+		  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
+		      <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+		      <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
+		  </svg>
+		  <label>import</label>		  		  		  		  
+	      </li>
+
+	      <li class="list-group-item" id="menu-contents-viewsource" onclick="fingerprint.menu.toggle();fingerprint.viewsource.viewsource_dialog();return false;" title="view the source for this drawing">
+
+		  <!-- https://icons.getbootstrap.com/icons/file-text/ -->
+		  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-text" viewBox="0 0 16 16">
+		      <path d="M5 4a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zM5 8a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1H5z"/>
+		      <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z"/>
+		  </svg>
+		  <label>view source</label>		  		  		  		  		  
+	      </li>
+
+	      <li class="list-group-item" id="menu-contents-offline" title="offline">
+		  <!-- https://icons.getbootstrap.com/icons/wifi-off/ -->
+		  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-wifi-off" viewBox="0 0 16 16">
+		      <path d="M10.706 3.294A12.545 12.545 0 0 0 8 3C5.259 3 2.723 3.882.663 5.379a.485.485 0 0 0-.048.736.518.518 0 0 0 .668.05A11.448 11.448 0 0 1 8 4c.63 0 1.249.05 1.852.148l.854-.854zM8 6c-1.905 0-3.68.56-5.166 1.526a.48.48 0 0 0-.063.745.525.525 0 0 0 .652.065 8.448 8.448 0 0 1 3.51-1.27L8 6zm2.596 1.404.785-.785c.63.24 1.227.545 1.785.907a.482.482 0 0 1 .063.745.525.525 0 0 1-.652.065 8.462 8.462 0 0 0-1.98-.932zM8 10l.933-.933a6.455 6.455 0 0 1 2.013.637c.285.145.326.524.1.75l-.015.015a.532.532 0 0 1-.611.09A5.478 5.478 0 0 0 8 10zm4.905-4.905.747-.747c.59.3 1.153.645 1.685 1.03a.485.485 0 0 1 .047.737.518.518 0 0 1-.668.05 11.493 11.493 0 0 0-1.811-1.07zM9.02 11.78c.238.14.236.464.04.66l-.707.706a.5.5 0 0 1-.707 0l-.707-.707c-.195-.195-.197-.518.04-.66A1.99 1.99 0 0 1 8 11.5c.374 0 .723.102 1.021.28zm4.355-9.905a.53.53 0 0 1 .75.75l-10.75 10.75a.53.53 0 0 1-.75-.75l10.75-10.75z"/>
+		  </svg>
+		  <label>offine</label>		  		  		  		  		  
+	      </li>
+
+	      <li class="list-group-item" id="menu-contents-settings" onclick="fingerprint.menu.show_settings_dialog();return false;" title="settings">
+		  <!-- https://icons.getbootstrap.com/icons/briefcase/ -->
+		  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-briefcase" viewBox="0 0 16 16">
+		      <path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v8A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-8A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1h-3zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5zm1.886 6.914L15 7.151V12.5a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5V7.15l6.614 1.764a1.5 1.5 0 0 0 .772 0zM1.5 4h13a.5.5 0 0 1 .5.5v1.616L8.129 7.948a.5.5 0 0 1-.258 0L1 6.116V4.5a.5.5 0 0 1 .5-.5z"/>
+		  </svg>
+		  <label>settings</label> 		  
+	      </li>
+	      
+	      </ul>
+
+	      <ul class="list-group list-group-horizontal">
+
+		  <li class="list-group-item" id="redo" onclick="fingerprint.controls.redo();return false;">
+		      <!-- https://icons.getbootstrap.com/icons/arrow-clockwise/ -->
+		      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+			  <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+			  <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+		      </svg>
+		  </li>
+		  
+		  <li class="list-group-item" id="undo" onclick="fingerprint.controls.undo();return false;">
+		      <!-- https://icons.getbootstrap.com/icons/arrow-counterclockwise/ -->
+		      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
+			  <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
+			  <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
+		      </svg>
+		  </li>
+		  
+		  <li class="list-group-item" id="erase" onclick="fingerprint.controls.erase();return false;">
+		      <!-- https://icons.getbootstrap.com/icons/eraser/ -->
+		      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eraser" viewBox="0 0 16 16">
+			  <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2 2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm2.121.707a1 1 0 0 0-1.414 0L4.16 7.547l5.293 5.293 4.633-4.633a1 1 0 0 0 0-1.414l-3.879-3.879zM8.746 13.547 3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z"/>
+</svg>
+ 	  	  </li>
+
+		  <li class="list-group-item" id="draw" onclick="fingerprint.controls.draw();return false;">
+		      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-easel" viewBox="0 0 16 16">
+			  <path d="M8 0a.5.5 0 0 1 .473.337L9.046 2H14a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1h-1.85l1.323 3.837a.5.5 0 1 1-.946.326L11.092 11H8.5v3a.5.5 0 0 1-1 0v-3H4.908l-1.435 4.163a.5.5 0 1 1-.946-.326L3.85 11H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h4.954L7.527.337A.5.5 0 0 1 8 0zM2 3v7h12V3H2z"/>
+		      </svg>
+ 	  	  </li>
+
+		  <li class="list-group-item" id="zoom" onclick="return false;">
+		      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#ccc" class="bi bi-zoom-in" viewBox="0 0 16 16">
+			  <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+			  <path d="M10.344 11.742c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1 6.538 6.538 0 0 1-1.398 1.4z"/>
+			  <path fill-rule="evenodd" d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5z"/>
+		      </svg>
+ 	  	  </li>
+		  
+		  <li class="list-group-item" id="show-colour-picker" onclick="fingerprint.colours.dialog();return false;">
+		      <div id="current-colour-preview"></div>
+		  </li>
+			  
+	      </ul>
+	      
+	  </footer>
+
+	  <dialog id="colour-picker">
+	      <p>Select a colour</p>
+	      <div id="selected-colour" style="width:100%; height:30vh;"></div>
+	      
+	      <form>
+		  <div class="mb-3">
+		      <label for="colour" class="form-label">Colour</label>		      
+		      <input type="color" class="form-control" id="colour" onchange="fingerprint.colours.set_colour();return false;" />
+		  </div>
+
+		  <div class="mb-3">
+		      <label for="opacity" class="form-label">Opacity</label>		  		      
+		      <input type="range" id="opacity" class="form-control" max="1" step = "0.1" onchange="fingerprint.colours.set_colour();return false;" value="1" />
+		  </div>
+	      </form>
+
+	      <form method="dialog" class="dialog-close">
+		  <button class="btn">
+		      <!-- https://icons.getbootstrap.com/icons/check2-circle/ -->
+		      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check2-circle" viewBox="0 0 16 16">
+			  <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z"/>
+			  <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"/>
+		      </svg>
+		  </button>
+	      </form>
+
+	  </dialog>
+	  
+	  <dialog id="view-source-dialog">
+	      
+	      <div id="view-source-copy" onclick="fingerprint.viewsource.copy_to_clipboard();return false;">
+		  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+		      <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+		      <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+		  </svg>
+	      </div>
+	  
+	      <pre id="view-source"></pre>
+
+	      <form method="dialog" class="dialog-close">
+		  <button class="btn">
+		      <!-- https://icons.getbootstrap.com/icons/x-circle/ -->
+		      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+			  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+			  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+		      </svg>
+		  </button>
+	      </form>
+	      
+	  </dialog>
+	  
+	  <dialog id="export-dialog">
+	      <form>
+		  <div class="mb-3">
+		      <label for="export-dialog-name" class="form-label">Filename</label>
+		      <input type="text" class="form-control" id="export-dialog-name" />
+		  </div>
+
+		  <div class="mb-3">
+		      <label for="export-dialog-type" class="form-label">File Type</label>		  		      
+		      <select class="form-select" id="export-dialog-type">
+			  <option value="svg">SVG</option>			  
+			  <option value="png">PNG</option>
+			  <option value="json">JSON</option>			  
+		      </select>
+		  </div>
+
+		  <div class="mb-3" id="export-dialog-dimension-wrapper">		  
+		      <label for="export-dialog-dimension" class="form-label">Max dimension</label>		  
+		      <input type="number" class="form-control" id="export-dialog-dimension" value="4096" min="100" />
+		  </div>
+		  
+		  <div class="mb-3">		  
+		      <button class="btn" id="export-dialog-button" onclick="fingerprint.export.export();return false;">
+			  <!-- https://icons.getbootstrap.com/icons/download/ -->
+			  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+			      <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+			      <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+			  </svg>
+			  Export
+		      </button>
+		      </div>
+	      </form>
+
+	      <form method="dialog" class="dialog-close">
+		  <button class="btn">
+		      <!-- https://icons.getbootstrap.com/icons/x-circle/ -->
+		      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+			  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+			  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+		      </svg>
+		  </button>
+	      </form>
+	      
+	  </dialog>
+	  
+	  <dialog id="share-dialog">
+	      
+	      <form>
+		  <div class="mb-3">
+		      <label for="share-dialog-title" class="form-label">Title</label>
+		      <input type="text" class="form-control" id="share-dialog-title" />
+		  </div>
+
+		  <div class="mb-3">		  
+		      <label for="share-dialog-text" class="form-label">Text</label>		  
+		      <input type="text" class="form-control" id="share-dialog-text" />
+		  </div>
+
+		  <div class="mb-3">		  
+		      <label for="share-dialog-filename" class="form-label">Filename</label>		  
+		      <input type="text" class="form-control" id="share-dialog-filename" />
+		  </div>
+
+		  <div class="mb-3">
+		      <label for="share-dialog-type" class="form-label">File Type</label>		  		      
+		      <select class="form-select" id="share-dialog-type">
+			  <option value="png">PNG</option>		  		  			  
+			  <option value="svg">SVG</option>
+		      </select>
+		  </div>
+
+		  <div class="mb-3" id="share-dialog-dimension-wrapper">		  
+		      <label for="share-dialog-dimension" class="form-label">Max dimension</label>		  
+		      <input type="number" class="form-control" id="share-dialog-dimension" value="640" min="100" />
+		  </div>
+		  
+		  <div class="mb-3">		  
+		  <button class="btn" id="share-dialog-button" onclick="fingerprint.share.share();return false;">
+		      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-share" viewBox="0 0 16 16">
+			  <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/>
+		      </svg>
+		      Share
+		  </button>
+		  </div>
+		  
+	      </form>
+
+	      <form method="dialog" class="dialog-close">
+		  <button class="btn">
+		      <!-- https://icons.getbootstrap.com/icons/x-circle/ -->
+		      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+			  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+			  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+		      </svg>
+		  </button>
+	      </form>
+	      
+	  </dialog>
+
+	  <dialog id="list-dialog">
+	      <form>
+
+		  <div class="mb-3" id="list-dialog-preview">
+		      <!-- preview svg goes here -->
+		  </div>
+		  
+		  <div class="mb-3">
+		      <label for="list-dialog-image" class="form-label">Image</label>		  		      
+		      <select class="form-select" id="list-dialog-image">
+		      </select>
+		  </div>
+
+		  <div class="mb-3">		  
+		      <button class="btn" id="list-dialog-button" onclick="fingerprint.storage.load();return false;">
+			  <!-- https://icons.getbootstrap.com/icons/file-earmark-easel/ -->
+			  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-earmark-easel" viewBox="0 0 16 16">
+			      <path d="M8.5 6a.5.5 0 1 0-1 0h-2A1.5 1.5 0 0 0 4 7.5v2A1.5 1.5 0 0 0 5.5 11h.473l-.447 1.342a.5.5 0 1 0 .948.316L7.027 11H7.5v1a.5.5 0 0 0 1 0v-1h.473l.553 1.658a.5.5 0 1 0 .948-.316L10.027 11h.473A1.5 1.5 0 0 0 12 9.5v-2A1.5 1.5 0 0 0 10.5 6h-2zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-5a.5.5 0 0 1-.5-.5v-2z"/>
+			      <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+</svg>
+			  Open
+		      </button>
+		      </div>
+	      </form>
+
+	      <form method="dialog" class="dialog-close">
+		  <button class="btn">
+		      <!-- https://icons.getbootstrap.com/icons/x-circle/ -->
+		      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+			  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+			  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+		      </svg>
+		  </button>
+	      </form>
+	      
+	  </dialog>
+
+	  <dialog id="save-dialog">
+	      <form>
+		  <div class="mb-3">
+		      <label for="save-dialog-name" class="form-label">Filename</label>
+		      <input type="text" class="form-control" id="save-dialog-filename" />
+		  </div>
+
+		  <div class="mb-3">		  
+		      <button class="btn" id="save-dialog-button" onclick="fingerprint.storage.save();return false;">
+			  <!-- https://icons.getbootstrap.com/icons/save/ -->
+			  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-save" viewBox="0 0 16 16">
+			      <path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v7.293l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 9.293V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1H2z"/>
+			  </svg>
+			  Save
+		      </button>
+		      </div>
+	      </form>
+
+	      <form method="dialog" class="dialog-close">
+		  <button class="btn">
+		      <!-- https://icons.getbootstrap.com/icons/x-circle/ -->
+		      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+			  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+			  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+		      </svg>
+		  </button>
+	      </form>
+	      
+	  </dialog>
+
+	  <dialog id="import-dialog">
+	      <form>
+		  <div class="mb-3">
+		      <label for="import-dialog-file" class="import-label">File</label>
+		      <input type="file" class="form-control" id="import-dialog-files" accept=".svg,.json" />
+		  </div>
+
+		  <div class="mb-3">		  
+		      <button class="btn" id="save-dialog-button" onclick="fingerprint.import.import();return false;">
+			  <!-- https://icons.getbootstrap.com/icons/upload/ -->
+			  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
+			      <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+			      <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
+			  </svg>
+			  Import
+		      </button>
+		      </div>
+	      </form>
+
+	      <form method="dialog" class="dialog-close">
+		  <button class="btn">
+		      <!-- https://icons.getbootstrap.com/icons/x-circle/ -->
+		      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+			  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+			  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+		      </svg>
+		  </button>
+	      </form>
+	      
+	  </dialog>
+
+	  <dialog id="settings-dialog">
+	      <form>
+
+		  <div class="mb-3">		  
+		      <button class="btn" id="purge-cache-button" onclick="fingerprint.offline.purge_with_confirmation();return false;">
+			  <!-- https://icons.getbootstrap.com/icons/recycle/ -->
+			  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-recycle" viewBox="0 0 16 16">
+			      <path d="M9.302 1.256a1.5 1.5 0 0 0-2.604 0l-1.704 2.98a.5.5 0 0 0 .869.497l1.703-2.981a.5.5 0 0 1 .868 0l2.54 4.444-1.256-.337a.5.5 0 1 0-.26.966l2.415.647a.5.5 0 0 0 .613-.353l.647-2.415a.5.5 0 1 0-.966-.259l-.333 1.242-2.532-4.431zM2.973 7.773l-1.255.337a.5.5 0 1 1-.26-.966l2.416-.647a.5.5 0 0 1 .612.353l.647 2.415a.5.5 0 0 1-.966.259l-.333-1.242-2.545 4.454a.5.5 0 0 0 .434.748H5a.5.5 0 0 1 0 1H1.723A1.5 1.5 0 0 1 .421 12.24l2.552-4.467zm10.89 1.463a.5.5 0 1 0-.868.496l1.716 3.004a.5.5 0 0 1-.434.748h-5.57l.647-.646a.5.5 0 1 0-.708-.707l-1.5 1.5a.498.498 0 0 0 0 .707l1.5 1.5a.5.5 0 1 0 .708-.707l-.647-.647h5.57a1.5 1.5 0 0 0 1.302-2.244l-1.716-3.004z"/>
+			  </svg>
+			  Purge application cache
+		      </button>
+		      </div>
+	      </form>
+
+	      <form method="dialog" class="dialog-close">
+		  <button class="btn">
+		      <!-- https://icons.getbootstrap.com/icons/x-circle/ -->
+		      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+			  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+			  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+		      </svg>
+		  </button>
+	      </form>
+	      
+	  </dialog>
+	  
+  </body>
+
+  <!-- jQuery is a dependency of raphael.sketchpad.js -->
+  <script type="text/javascript" src="javascript/jquery-3.6.3.min.js"></script>    
+  <script type="text/javascript" src="javascript/localforage.min.js"></script>
+  <script type="text/javascript" src="javascript/raphael.min.js"></script>
+  <script type="text/javascript" src="javascript/raphael.sketchpad.js"></script>
+  <script type="text/javascript" src="javascript/FileSaver.min.js"></script>
+  <script type="text/javascript" src="javascript/toastify.js"></script>  
+  <script type="text/javascript" src="javascript/XmlBeautify.js"></script>
+  
+  <script type="text/javascript" src="javascript/fingerprint.capabilities.js"></script>
+  <script type="text/javascript" src="javascript/fingerprint.feedback.js"></script>
+  <script type="text/javascript" src="javascript/fingerprint.menu.js"></script>
+  <script type="text/javascript" src="javascript/fingerprint.controls.js"></script>      
+  <script type="text/javascript" src="javascript/fingerprint.render.js"></script>    
+  <script type="text/javascript" src="javascript/fingerprint.storage.js"></script>
+  <script type="text/javascript" src="javascript/fingerprint.import.js"></script>      
+  <script type="text/javascript" src="javascript/fingerprint.export.js"></script>
+  <script type="text/javascript" src="javascript/fingerprint.share.js"></script>
+  <script type="text/javascript" src="javascript/fingerprint.colours.js"></script>  
+  <script type="text/javascript" src="javascript/fingerprint.viewsource.js"></script>
+  <script type="text/javascript" src="javascript/fingerprint.drawing.js"></script>
+  <script type="text/javascript" src="javascript/fingerprint.offline.js"></script>
+  <script type="text/javascript" src="javascript/fingerprint.application.js"></script>
+  
+  <script type="text/javascript" src="javascript/fingerprint.init.js"></script>        
+  
+</html>

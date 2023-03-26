@@ -115,10 +115,15 @@ footer {
 }
 
 #view-source {
-	padding: 1em;
 	overflow:scroll;
 	font-family:monospace;
-	font-size:small;
+	font-size:x-small;
+	max-height: 20vw;
+	margin-left:1vw;
+	margin-right:1vw;
+	margin-top:1vw;
+	border: 1px dotted #ccc;
+	
 }
 
 #view-source-copy {

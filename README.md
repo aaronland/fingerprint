@@ -75,6 +75,8 @@ Purging the application will trigger a confirmation dialog. If you are purging t
 
 ![](docs/images/fingerprint-purge-really-640.jpg)
 
+_Note: Because offline support depends on Service Workers it will not be available if a device is running under Mac OS or iOS [with Lockdown mode enabled](https://webkit.org/blog/13966/webkit-features-in-safari-16-4/)._
+
 ### Undo and Redo (and delete an individual path)
 
 The application maintains a history of paths drawn so you can undo or redo individual paths. There is also an option to delete an individual path on screen, regardless of whether or not it is in the application's current history. I almost never use this feature and am on the fence about whether to keep it in the interface.

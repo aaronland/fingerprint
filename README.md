@@ -126,3 +126,7 @@ Suggestions, or contributions, on how to implement any of these features is welc
 ### Graphic design
 
 * https://icons.getbootstrap.com/
+
+### Go
+
+* https://github.com/aaronland/go-fingerprint

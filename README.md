@@ -123,6 +123,11 @@ Suggestions, or contributions, on how to implement any of these features is welc
 * https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API
 * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/color
 
+### WebAssembly (WASM)
+
+* https://github.com/sfomuseum/go-exif-update/
+* https://github.com/sfomuseum/go-http-wasm/tree/main/static/javascript
+
 ### Graphic design
 
 * https://icons.getbootstrap.com/

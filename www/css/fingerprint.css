@@ -52,6 +52,10 @@ footer {
 	display:none;
 }
 
+#export-dialog-exif-wrapper {
+	display:none;
+}
+
 #footer-menu {
 	position: fixed;
 	bottom: 1.5vh;

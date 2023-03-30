@@ -47,7 +47,7 @@ Individual drawings can be exported as PNG, JPEG, SVG and JSON files on devices 
 
 JPEG exports have the option of writing the value of the drawing's `x-fingerprint-date` attribute to the `DateTime`, `DateTimeOriginal` and `DateTimeDigitized` EXIF headers using the [sfomuseum/go-exif-update](https://github.com/sfomuseum/go-exif-update#update-exif-wasm-demo) WebAssembly (WASM) binary. 
 
-![](docs/images/fingerprint-wasm-console-640.png)
+![](docs/images/fingerprint-wasm-console-640.jpg)
 
 For example, the following EXIF headers were written to the exported image (in the screenshot above):
 
@@ -63,7 +63,7 @@ The option to write EXIF headers is disabled if there is a problem fetching or i
 
 * There is an outstanding issue for how the `x-fingerprint-date` attribute is preserved (or more specifically not preserved) across imports. This is being tracked in [issue #9](https://github.com/aaronland/fingerprint/issues/9).
 * If you are exporting images in iOS the default behaviour is to write the image as a [Blob](https://developer.mozilla.org/en-US/docs/Web/API/Blob) URL to a browser window which can then be "saved" to the device. During this second step iOS will add its own EXIF headers including new values for the date headers written by the `fingerprint` application.
-* It is not possible to export drawings as JPEG images yet. This is being tracked in [issue #10](https://github.com/aaronland/fingerprint/issues/10).
+* It is not possible to ["share" drawings](#sharing) as JPEG images yet. This is being tracked in [issue #10](https://github.com/aaronland/fingerprint/issues/10).
 * It is not possible to assign other EXIF headers yet. This may be revisited in future versions. For details, consult the [Updating EXIF metadata in JavaScript (and WebAssembly)](https://millsfield.sfomuseum.org/blog/2021/04/14/exif/) blog post.
 
 ### Sharing

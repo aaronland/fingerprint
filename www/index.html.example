@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="css/fingerprint.css" />
   </head>
   <body data-offline-scope="">
-      
+
       <div id="wrapper">
 	  <div id="editor"></div>
       </div>
@@ -233,13 +233,19 @@
 		      <select class="form-select" id="export-dialog-type">
 			  <option value="svg">SVG</option>			  
 			  <option value="png">PNG</option>
+			  <option value="jpeg">JPEG</option>			  
 			  <option value="json">JSON</option>			  
 		      </select>
 		  </div>
-
+		  
 		  <div class="mb-3" id="export-dialog-dimension-wrapper">		  
 		      <label for="export-dialog-dimension" class="form-label">Max dimension</label>		  
 		      <input type="number" class="form-control" id="export-dialog-dimension" value="4096" min="100" />
+		  </div>
+
+		  <div class="mb-3" id="export-dialog-exif-wrapper">
+		      <label for="export-dialog-jpeg-update-exif" class="form-label">Assign EXIF data to image</label>  
+		      <input type="checkbox" id="export-dialog-update-exif" checked="true" />
 		  </div>
 		  
 		  <div class="mb-3">		  
@@ -454,6 +460,9 @@
   <script type="text/javascript" src="javascript/FileSaver.min.js"></script>
   <script type="text/javascript" src="javascript/toastify.js"></script>  
   <script type="text/javascript" src="javascript/XmlBeautify.js"></script>
+
+  <script type="text/javascript" src="javascript/wasm_exec.js"></script>
+  <script type="text/javascript" src="javascript/sfomuseum.wasm.js"></script>  
   
   <script type="text/javascript" src="javascript/fingerprint.capabilities.js"></script>
   <script type="text/javascript" src="javascript/fingerprint.feedback.js"></script>
@@ -461,6 +470,7 @@
   <script type="text/javascript" src="javascript/fingerprint.controls.js"></script>      
   <script type="text/javascript" src="javascript/fingerprint.render.js"></script>    
   <script type="text/javascript" src="javascript/fingerprint.storage.js"></script>
+  <script type="text/javascript" src="javascript/fingerprint.exif.js"></script>  
   <script type="text/javascript" src="javascript/fingerprint.import.js"></script>      
   <script type="text/javascript" src="javascript/fingerprint.export.js"></script>
   <script type="text/javascript" src="javascript/fingerprint.share.js"></script>

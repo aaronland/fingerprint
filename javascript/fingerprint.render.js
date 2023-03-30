@@ -47,7 +47,7 @@ fingerprint.render = (function(){
 	    return b.beautify(svg_string)
 	},
 	
-	asPNG: function(max_dim){
+	asImage: function(max_dim, mimetype, quality){
 
 	    if (! max_dim){
 		max_dim = 4096;
@@ -76,10 +76,10 @@ fingerprint.render = (function(){
 		    svg_el.setAttribute("height", svg_h * scale);		
 		}
 
-	    return self.asPNGWithSVGElement(svg_el);
+	    return self.asImageWithSVGElement(svg_el, mimetype, quality);
 	},
 	
-	asPNGWithSVGElement: function(svg_el){
+	asImageWithSVGElement: function(svg_el, mimetype, quality){	    
 	    
 	    return new Promise((resolve, reject) => {
 	
@@ -101,16 +101,16 @@ fingerprint.render = (function(){
 		};
 
 		
-		var png_w = svg_el.getAttribute("width");
-		var png_h = svg_el.getAttribute("height");
+		var img_w = svg_el.getAttribute("width");
+		var img_h = svg_el.getAttribute("height");
 
-		// console.log("PNG", png_w, png_h);
+		// console.log("PNG", img_w, img_h);
 		
 		var canvas = document.createElement("canvas");
 		var context = canvas.getContext("2d");
 		
-		canvas.width = png_w;
-		canvas.height = png_h;
+		canvas.width = img_w;
+		canvas.height = img_h;
 		
 		context.fillStyle = "white";
 		context.fillRect(0, 0, canvas.width, canvas.height);
@@ -121,7 +121,7 @@ fingerprint.render = (function(){
 		    
 		    canvas.toBlob(function(blob) {
 			resolve(blob);
-		    });
+		    }, mimetype, quality);
 		    
 		});
 		

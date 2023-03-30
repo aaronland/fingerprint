@@ -6,7 +6,8 @@ fingerprint.capabilities = (function(){
     var can_export = false;
     var can_fullscreen = false;
     var can_copy_to_clipboard = false;
-
+    var can_update_exif = false;
+    
     var max_dimension = 20000;
     
     var self = {
@@ -24,7 +25,12 @@ fingerprint.capabilities = (function(){
 	    if (isFileSaverSupported = !!new Blob){
 		can_export = true;
 	    }
-	    
+
+	    fingerprint.exif.init().then((rsp) => {
+		can_update_exif = true;
+	    }).catch((err) => {
+		console.log("Unable to initialize EXIF WASM, ", err);
+	    });
 	},
 	
 	share: function(){
@@ -45,6 +51,10 @@ fingerprint.capabilities = (function(){
 
 	max_dimension: function(){
 	    return max_dimension;
+	},
+
+	update_exif: function(){
+	    return can_update_exif;
 	},
     };
 

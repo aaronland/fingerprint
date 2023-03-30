@@ -5,7 +5,8 @@ fingerprint.exif = (function(){
     var self = {
 
 	init: function(){
-	    return sfomuseum.wasm.fetch("../wasm/update_exif.wasm");
+	    var wasm_url = location.href + "wasm/update_exif.wasm";
+	    return sfomuseum.wasm.fetch(wasm_url);
 	},
 
     };

@@ -37,11 +37,34 @@ Consult the [Offline support](https://github.com/aaronland/fingerprint#offline-s
 
 ### Import and Export
 
-Individual drawings can be exported as PNG, SVG and JSON files on devices that support the [File API](https://developer.mozilla.org/en-US/docs/Web/API/File_API). Drawings, stored in the SVG format, can be re-imported in to the application (assuming support for the `File` API).
+Individual drawings can be exported as PNG, JPEG, SVG and JSON files on devices that support the [File API](https://developer.mozilla.org/en-US/docs/Web/API/File_API). Drawings, stored in the SVG format, can be re-imported in to the application (assuming support for the `File` API).
 
 ![](docs/images/fingerprint-import-640.jpg)
 
 ![](docs/images/fingerprint-export-640.png)
+
+#### JPEG exports and EXIF data
+
+JPEG exports have the option of writing the value of the drawing's `x-fingerprint-date` attribute to the `DateTime`, `DateTimeOriginal` and `DateTimeDigitized` EXIF headers using the [sfomuseum/go-exif-update](https://github.com/sfomuseum/go-exif-update#update-exif-wasm-demo) WebAssembly (WASM) binary. 
+
+![](docs/images/fingerprint-wasm-console-640.png)
+
+For example, the following EXIF headers were written to the exported image (in the screenshot above):
+
+```
+$> exiv2 -pa /usr/local/downloads/fingerprint-1680192589.jpg 
+Exif.Image.ExifTag                           Long        1  100
+Exif.Photo.DateTimeDigitized                 Ascii      25  2023-03-30T16:10:15.369Z
+Exif.Image.DateTime                          Ascii      25  2023-03-30T16:10:15.369Z
+Exif.Image.DateTimeOriginal                  Ascii      25  2023-03-30T16:10:15.369Z
+```
+
+The option to write EXIF headers is disabled if there is a problem fetching or initializing the WASM binary. There are a few caveats for JPEG exports with EXIF headers:
+
+* There is an outstanding issue for how the `x-fingerprint-date` attribute is preserved (or more specifically not preserved) across imports. This is being tracked in [issue #9](https://github.com/aaronland/fingerprint/issues/9).
+* If you are exporting images in iOS the default behaviour is to write the image as a [Blob](https://developer.mozilla.org/en-US/docs/Web/API/Blob) URL to a browser window which can then be "saved" to the device. During this second step iOS will add its own EXIF headers including new values for the date headers written by the `fingerprint` application.
+* It is not possible to export drawings as JPEG images yet. This is being tracked in [issue #10](https://github.com/aaronland/fingerprint/issues/10).
+* It is not possible to assign other EXIF headers yet. This may be revisited in future versions. For details, consult the [Updating EXIF metadata in JavaScript (and WebAssembly)](https://millsfield.sfomuseum.org/blog/2021/04/14/exif/) blog post.
 
 ### Sharing
 

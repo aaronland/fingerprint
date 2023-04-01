@@ -114,6 +114,10 @@ footer {
 	display: none;
 }
 
+#share-dialog-exif-wrapper {
+	display:none;
+}
+
 #show-colour-picker {
 	padding-left: .75rem !important;
 }

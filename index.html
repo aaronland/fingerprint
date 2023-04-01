@@ -33,7 +33,7 @@
 	  
 	  <ul class="list-group list-group" id="footer-menu-contents">
 	      
-	      <li class="list-group-item" id="menu-contents-share" onclick="fingerprint.menu.toggle();fingerprint.share.share_dialog();return false;" title="share this drawing">
+	      <li class="list-group-item" id="menu-contents-share" onclick="fingerprint.menu.toggle();fingerprint.share.dialog();return false;" title="share this drawing">
 		  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-share" viewBox="0 0 16 16">
 		      <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/>
 		  </svg>
@@ -293,7 +293,8 @@
 		  <div class="mb-3">
 		      <label for="share-dialog-type" class="form-label">File Type</label>		  		      
 		      <select class="form-select" id="share-dialog-type">
-			  <option value="png">PNG</option>		  		  			  
+			  <option value="png">PNG</option>
+			  <option value="jpeg">JPEG</option>		  		  			  			  
 			  <option value="svg">SVG</option>
 		      </select>
 		  </div>
@@ -301,6 +302,11 @@
 		  <div class="mb-3" id="share-dialog-dimension-wrapper">		  
 		      <label for="share-dialog-dimension" class="form-label">Max dimension</label>		  
 		      <input type="number" class="form-control" id="share-dialog-dimension" value="640" min="100" />
+		  </div>
+
+		  <div class="mb-3" id="share-dialog-exif-wrapper">
+		      <label for="share-dialog-jpeg-update-exif" class="form-label">Assign EXIF data to image</label>  
+		      <input type="checkbox" id="share-dialog-update-exif" checked="true" />
 		  </div>
 		  
 		  <div class="mb-3">		  

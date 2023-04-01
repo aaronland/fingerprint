@@ -62,15 +62,23 @@ Exif.Image.DateTimeOriginal                  Ascii      25  2023-03-30T16:10:15.
 The option to write EXIF headers is disabled if there is a problem fetching or initializing the WASM binary. There are a few caveats for JPEG exports with EXIF headers:
 
 * There is an outstanding issue for how the `x-fingerprint-date` attribute is preserved (or more specifically not preserved) across imports. This is being tracked in [issue #9](https://github.com/aaronland/fingerprint/issues/9).
-* If you are exporting images in iOS the default behaviour is to write the image as a [Blob](https://developer.mozilla.org/en-US/docs/Web/API/Blob) URL to a browser window which can then be "saved" to the device. During this second step iOS will add its own EXIF headers including new values for the date headers written by the `fingerprint` application.
-* It is not possible to ["share" drawings](#sharing) as JPEG images yet. This is being tracked in [issue #10](https://github.com/aaronland/fingerprint/issues/10).
+* If you are exporting images in iOS the default behaviour is to write the image as a [Blob](https://developer.mozilla.org/en-US/docs/Web/API/Blob) URL to a browser window which can then be "saved" to the device. During this second step iOS will add its own EXIF headers including new values for the date headers written by the `fingerprint` application. It is (should be) possible to preserve EXIF dates, as written by the `fingerprint` application, by using the [share](#jpeg-sharing-and-exif-data) feature but that is dependent on your web browser supporting the `Web Share` API.
 * It is not possible to assign other EXIF headers yet. This may be revisited in future versions. For details, consult the [Updating EXIF metadata in JavaScript (and WebAssembly)](https://millsfield.sfomuseum.org/blog/2021/04/14/exif/) blog post.
 
 ### Sharing
 
-Images can be "shared" (as PNG and SVG documents) on devices that support the [Web Share API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Share_API).
+Images can be "shared" (as a PNG, JPEG or SVG document) on devices that support the [Web Share API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Share_API).
 
 ![](docs/images/fingerprint-share-640.png)
+
+#### JPEG sharing and EXIF data
+
+Unlike with [exports](#jpeg-exports-and-exif-data) date information as written by the `fingerprint` application is preserved. To be precise it _should_ be preserved. That's what my testing indicates but if you told me your browser, or operating system, was doing something different I would not be surprised.
+
+As with exports, the following caveats still apply:
+
+* There is an outstanding issue for how the `x-fingerprint-date` attribute is preserved (or more specifically not preserved) across imports. This is being tracked in [issue #9](https://github.com/aaronland/fingerprint/issues/9).
+* It is not possible to assign other EXIF headers yet. This may be revisited in future versions. For details, consult the [Updating EXIF metadata in JavaScript (and WebAssembly)](https://millsfield.sfomuseum.org/blog/2021/04/14/exif/) blog post.
 
 ### Local storage
 

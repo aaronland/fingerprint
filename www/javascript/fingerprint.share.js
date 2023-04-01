@@ -117,26 +117,33 @@ fingerprint.share = (function(){
 		    
 		case "jpeg":
 
+		    filename = filename + ".jpg";
+		    
 		    var dimension_el = document.getElementById("export-dialog-dimension");
 		    var max_dimension = dimension_el.value;
 		    
 		    var update_exif_el = document.getElementById("export-dialog-update-exif");
 		    var do_update_exif = update_exif_el.checked;
+
+		    // START OF reconcile with fingerprint.export.js
 		    
 		    var exif_data;
-		    
+
 		    if ((do_update_exif) && (fingerprint.capabilities.update_exif())){
 			
 			var svg_el = fingerprint.render.asSVGElement();
 			var date = svg_el.getAttribute("x-fingerprint-date");
-			
+
 			exif_data = {
 			    "DateTime": date,
 			    "DateTimeOriginal": date,
 			    "DateTimeDigitized": date,
 			};
+
 		    }
 
+		    // END OF reconcile with fingerprint.export.js
+		    
 		    fingerprint.render.asImage(max_dimension, "image/jpeg", 1).then((blob) => {
 
 			if ((! exif_data) || (! fingerprint.capabilities.update_exif())){

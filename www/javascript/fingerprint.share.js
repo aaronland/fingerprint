@@ -119,10 +119,10 @@ fingerprint.share = (function(){
 
 		    filename = filename + ".jpg";
 		    
-		    var dimension_el = document.getElementById("export-dialog-dimension");
+		    var dimension_el = document.getElementById("share-dialog-dimension");
 		    var max_dimension = dimension_el.value;
 		    
-		    var update_exif_el = document.getElementById("export-dialog-update-exif");
+		    var update_exif_el = document.getElementById("share-dialog-update-exif");
 		    var do_update_exif = update_exif_el.checked;
 
 		    // START OF reconcile with fingerprint.export.js

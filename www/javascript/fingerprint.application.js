@@ -5,7 +5,6 @@ fingerprint.application = (function(){
     var self = {
 
 	sketchpad: null,
-
 	panzoom: null,
 	
 	init: function(){

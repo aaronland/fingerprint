@@ -634,9 +634,25 @@
 			_drawing = true;
 
 			_offset = $(sketchpad.container()).offset();
-			
-			var x = e.pageX - _offset.left,
-				y = e.pageY - _offset.top;
+
+		    console.log("START PEN", _offset);
+		    console.log("START PEN", e);
+		    console.log("START PEN", e.pageX, e.pageY);
+
+		    // CUSTOM
+		    if (fingerprint.application.panzoom){
+			var pos = fingerprint.application.panzoom.getCurrentPosition();
+			console.log("PZ", pos);
+			_offset.left -= pos.x;
+			_offset.top -= pos.y;
+		    }
+		    
+		    
+		    var x = e.pageX - _offset.left;
+		    var y = e.pageY - _offset.top;
+
+		    console.log("X,Y", x, y);
+		    
 			_points.push([x, y]);
 
 			_c = sketchpad.paper().path();
@@ -677,10 +693,12 @@
 
 		self.move = function(e, sketchpad) {
 			if (_drawing == true) {
-				var x = e.pageX - _offset.left,
-					y = e.pageY - _offset.top;			
-				_points.push([x, y]);
-				_c.attr({ path: points_to_svg() });
+			    var x = e.pageX - _offset.left
+			    var y = e.pageY - _offset.top;
+			    
+			    // console.log("MOVE", x, y);
+			    _points.push([x, y]);
+			    _c.attr({ path: points_to_svg() });
 			}
 		};
 

@@ -639,19 +639,26 @@
 		    console.log("START PEN", e);
 		    console.log("START PEN", e.pageX, e.pageY);
 
-		    // CUSTOM
-		    if (fingerprint.application.panzoom){
-			var pos = fingerprint.application.panzoom.getCurrentPosition();
-			console.log("PZ", pos);
-			_offset.left -= pos.x;
-			_offset.top -= pos.y;
-		    }
-		    
-		    
 		    var x = e.pageX - _offset.left;
 		    var y = e.pageY - _offset.top;
 
-		    console.log("X,Y", x, y);
+		    console.log("START", e.pageX, _offset.left, x)
+		    console.log("START", e.pageY, _offset.top, y)
+		    console.log("START X,Y", x, y);
+		    
+		    // CUSTOM
+		    if (fingerprint.application.panzoom){
+			var pos = fingerprint.application.panzoom.getCurrentPosition();
+			console.log("START pos", pos);
+			
+			var x2 = x * (1 - (fingerprint.application.panzoom.getCurrentZoom() * 0.1));
+			var y2 = y * (1 - (fingerprint.application.panzoom.getCurrentZoom() * 0.1));
+			console.log("START X2,Y2", x2, y2);
+
+			x = x2;
+			y = y2;
+		    }
+		   
 		    
 			_points.push([x, y]);
 
@@ -693,8 +700,25 @@
 
 		self.move = function(e, sketchpad) {
 			if (_drawing == true) {
-			    var x = e.pageX - _offset.left
+			    var x = e.pageX - _offset.left;
 			    var y = e.pageY - _offset.top;
+
+			    // console.log("MOVE Y", e.pageX, _offset.left, x)
+			    // console.log("MOVE X", e.pageY, _offset.top, y)   
+			    
+		    // CUSTOM
+		    if (fingerprint.application.panzoom){
+			var pos = fingerprint.application.panzoom.getCurrentPosition();
+			console.log("MOVE pos", pos);
+
+			var x2 = x * (1 - (fingerprint.application.panzoom.getCurrentZoom() * 0.1));
+			var y2 = y * (1 - (fingerprint.application.panzoom.getCurrentZoom() * 0.1));
+			console.log("MOVE X2,Y2", x2, y2);
+
+			x = x2;
+			y = y2;
+			
+		    }
 			    
 			    // console.log("MOVE", x, y);
 			    _points.push([x, y]);

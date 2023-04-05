@@ -653,6 +653,10 @@
 			
 			var x2 = x * (1 - (fingerprint.application.panzoom.getCurrentZoom() * 0.1));
 			var y2 = y * (1 - (fingerprint.application.panzoom.getCurrentZoom() * 0.1));
+
+			x2 += pos.x
+			y2 += pos.y
+			
 			console.log("START X2,Y2", x2, y2);
 
 			x = x2;
@@ -713,6 +717,10 @@
 
 			var x2 = x * (1 - (fingerprint.application.panzoom.getCurrentZoom() * 0.1));
 			var y2 = y * (1 - (fingerprint.application.panzoom.getCurrentZoom() * 0.1));
+
+			x2 += pos.x
+			y2 += pos.y
+			
 			console.log("MOVE X2,Y2", x2, y2);
 
 			x = x2;

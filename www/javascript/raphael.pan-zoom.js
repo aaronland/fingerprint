@@ -222,12 +222,16 @@
             };
 	    */
 
+	    // https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events/Pinch_zoom_gestures
+
+	    var onpointermove = function(e){
+
+	    };
+	    
 	    var onpointerdown = function(e) {
 
-		console.log("DOWN", e.pointerType);
                 var evt = window.event || e;
 
-		console.log("DOWN", me.enabled);
                 if (!me.enabled) {
                     return false;
                 }

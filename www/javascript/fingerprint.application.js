@@ -4,6 +4,7 @@ fingerprint.application = (function(){
     
     var self = {
 
+	// Make these actual methods...
 	sketchpad: null,
 	panzoom: null,
 	

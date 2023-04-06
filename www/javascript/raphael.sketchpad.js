@@ -268,7 +268,8 @@
 					// iPhone Events
 					var agent = navigator.userAgent;
 				    	// if (agent.indexOf("iPhone") > 0 || agent.indexOf("iPod") > 0) {
-					//if (agent.indexOf("iPhone") > 0 || agent.indexOf("iPod") > 0 || agent.indexOf("iPad") > 0){					
+				    //if (agent.indexOf("iPhone") > 0 || agent.indexOf("iPod") > 0 || agent.indexOf("iPad") > 0){
+				    
 						$(_container).unbind("touchstart", _touchstart);
 						$(_container).unbind("touchmove", _touchmove);
 						$(_container).unbind("touchend", _touchend);
@@ -631,34 +632,27 @@
 		}
 
 		self.start = function(e, sketchpad) {
-			_drawing = true;
+		    _drawing = true;
 
-			_offset = $(sketchpad.container()).offset();
-
-		    console.log("START PEN", _offset);
-		    console.log("START PEN", e);
-		    console.log("START PEN", e.pageX, e.pageY);
+		    _offset = $(sketchpad.container()).offset();
 
 		    var x = e.pageX - _offset.left;
 		    var y = e.pageY - _offset.top;
 
-		    console.log("START", e.pageX, _offset.left, x)
-		    console.log("START", e.pageY, _offset.top, y)
-		    console.log("START X,Y", x, y);
 		    
 		    // CUSTOM
 		    if (fingerprint.application.panzoom){
-			var pos = fingerprint.application.panzoom.getCurrentPosition();
-			console.log("START pos", pos);
 			
+			var pos = fingerprint.application.panzoom.getCurrentPosition();
+
+			// 0.1 is the default panzoom.settings.zoomStep which can be passed
+			// to the panzoom constructor but not exposed once initialized. TBD...
 			var x2 = x * (1 - (fingerprint.application.panzoom.getCurrentZoom() * 0.1));
 			var y2 = y * (1 - (fingerprint.application.panzoom.getCurrentZoom() * 0.1));
 
 			x2 += pos.x
 			y2 += pos.y
 			
-			console.log("START X2,Y2", x2, y2);
-
 			x = x2;
 			y = y2;
 		    }
@@ -703,35 +697,30 @@
 		};
 
 		self.move = function(e, sketchpad) {
-			if (_drawing == true) {
-			    var x = e.pageX - _offset.left;
-			    var y = e.pageY - _offset.top;
-
-			    // console.log("MOVE Y", e.pageX, _offset.left, x)
-			    // console.log("MOVE X", e.pageY, _offset.top, y)   
-			    
-		    // CUSTOM
-		    if (fingerprint.application.panzoom){
-			var pos = fingerprint.application.panzoom.getCurrentPosition();
-			console.log("MOVE pos", pos);
-
-			var x2 = x * (1 - (fingerprint.application.panzoom.getCurrentZoom() * 0.1));
-			var y2 = y * (1 - (fingerprint.application.panzoom.getCurrentZoom() * 0.1));
-
-			x2 += pos.x
-			y2 += pos.y
+		    if (_drawing == true) {
+			var x = e.pageX - _offset.left;
+			var y = e.pageY - _offset.top;
 			
-			console.log("MOVE X2,Y2", x2, y2);
+			// CUSTOM
+			if (fingerprint.application.panzoom){
+			    var pos = fingerprint.application.panzoom.getCurrentPosition();
 
-			x = x2;
-			y = y2;
-			
-		    }
+			    // 0.1 is the default panzoom.settings.zoomStep which can be passed
+			    // to the panzoom constructor but not exposed once initialized. TBD...
+			    var x2 = x * (1 - (fingerprint.application.panzoom.getCurrentZoom() * 0.1));
+			    var y2 = y * (1 - (fingerprint.application.panzoom.getCurrentZoom() * 0.1));
 			    
-			    // console.log("MOVE", x, y);
-			    _points.push([x, y]);
-			    _c.attr({ path: points_to_svg() });
+			    x2 += pos.x
+			    y2 += pos.y
+			    
+			    x = x2;
+			    y = y2;
+			    
 			}
+			    
+			_points.push([x, y]);
+			_c.attr({ path: points_to_svg() });
+		    }
 		};
 
 		function points_to_svg() {

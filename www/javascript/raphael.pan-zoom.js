@@ -87,6 +87,8 @@
                 deltaY = 0,
                 mousewheelevt = (/Firefox/i.test(navigator.userAgent)) ? "DOMMouseScroll" : "mousewheel";
 
+	    console.log("CONTAINER", container, mousewheelevt);
+	    
             this.enabled = false;
             this.dragThreshold = 5;
             this.dragTime = 0;
@@ -191,8 +193,10 @@
             }
             
             repaint();
-    
+
+	    /*
             container.onmousedown = function (e) {
+		
                 var evt = window.event || e;
                 if (!me.enabled) {
                     return false;
@@ -201,10 +205,10 @@
                 initialPos = getRelativePosition(evt, container);
                 container.className += " grabbing";
                 container.onmousemove = dragging;
-                document.onmousemove = function () { return false; };
+               // document.onmousemove = function () { return false; };
                 if (evt.preventDefault) {
                     evt.preventDefault();
-                } else {
+               } else {
                     evt.returnValue = false;
                 }
                 return false;
@@ -216,7 +220,53 @@
                 container.className = container.className.replace(/(?:^|\s)grabbing(?!\S)/g, '');
                 container.onmousemove = null;
             };
-    
+	    */
+
+	    var onpointerdown = function(e) {
+
+		console.log("DOWN", e.pointerType);
+                var evt = window.event || e;
+
+		console.log("DOWN", me.enabled);
+                if (!me.enabled) {
+                    return false;
+                }
+
+		me.dragTime = 0;
+		initialPos = getRelativePosition(evt, container);
+		container.className += " grabbing";
+		// container.onpointermove = dragging;
+		// document.onpointeremove = function () { return false; };
+
+		container.addEventListener("onpointermove", dragging);
+		
+		if (evt.preventDefault) {
+		    evt.preventDefault();
+		} else {
+		    evt.returnValue = false;
+		}
+		
+                return false;
+		
+	    };
+
+	    var onpointerup = function(e){
+		console.log("UP", e.pointerType);
+		console.log("UP", me.enabled);		
+		//Remove class framework independent
+		// document.onpointermove = null;
+		container.className = container.className.replace(/(?:^|\s)grabbing(?!\S)/g, '');
+		// container.onpointermove = null;
+
+		container.removeEventListener("onpointermove", dragging);
+	    };
+		
+	    // container.onpointerdown = onpointerdown;
+            // container.onpointerup = onpointerup;
+
+	    container.addEventListener("onpointerdown", onpointerdown);
+	    container.addEventListener("onpointerup", onpointerup);	    
+	    
             if (container.attachEvent) {//if IE (and Opera depending on user setting)
                 container.attachEvent("on" + mousewheelevt, handleScroll);
             } else if (container.addEventListener) {//WC3 browsers

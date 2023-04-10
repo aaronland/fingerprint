@@ -84,10 +84,11 @@
                 settings = {},
                 initialPos = { x: 0, y: 0 },
                 deltaX = 0,
-                deltaY = 0,
-                mousewheelevt = (/Firefox/i.test(navigator.userAgent)) ? "DOMMouseScroll" : "mousewheel";
-
-	    console.log("CONTAINER", container, mousewheelevt);
+                deltaY = 0;
+	    
+	    // Global vars to cache event state
+	    this.evCache = new Array();
+	    this.prevDiff = -1;
 	    
             this.enabled = false;
             this.dragThreshold = 5;
@@ -194,38 +195,38 @@
             
             repaint();
 
-	    /*
-            container.onmousedown = function (e) {
-		
-                var evt = window.event || e;
-                if (!me.enabled) {
-                    return false;
-                }
-                me.dragTime = 0;
-                initialPos = getRelativePosition(evt, container);
-                container.className += " grabbing";
-                container.onmousemove = dragging;
-               // document.onmousemove = function () { return false; };
-                if (evt.preventDefault) {
-                    evt.preventDefault();
-               } else {
-                    evt.returnValue = false;
-                }
-                return false;
-            };
-    
-            container.onmouseup = function (e) {
-                //Remove class framework independent
-                document.onmousemove = null;
-                container.className = container.className.replace(/(?:^|\s)grabbing(?!\S)/g, '');
-                container.onmousemove = null;
-            };
-	    */
-
 	    // https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events/Pinch_zoom_gestures
 
-	    var onpointermove = function(e){
+	    var onpointermove = function(ev){
 
+		// Find this event in the cache and update its record with this event
+		for (var i = 0; i < this.evCache.length; i++) {
+		    if (ev.pointerId == this.evCache[i].pointerId) {
+			this.evCache[i] = ev;
+			break;
+		    }
+		}
+		
+		// If two pointers are down, check for pinch gestures
+		if (this.evCache.length == 2) {
+		    // Calculate the distance between the two pointers
+		    var curDiff = Math.sqrt(Math.pow(this.evCache[1].clientX - this.evCache[0].clientX, 2) + Math.pow(this.evCache[1].clientY - this.evCache[0].clientY, 2));
+		    
+		    if (this.prevDiff > 0) {
+			if (curDiff > this.prevDiff) {
+			    // The distance between the two pointers has increased
+			    ev.target.style.background = "pink";
+			}
+			if (curDiff < this.prevDiff) {
+			    // The distance between the two pointers has decreased
+			    ev.target.style.background = "lightblue";
+			}
+		    }
+		    
+		    // Cache the distance for the next move event 
+		    this.prevDiff = curDiff;
+		}
+		
 	    };
 	    
 	    var onpointerdown = function(e) {
@@ -236,6 +237,8 @@
                     return false;
                 }
 
+		this.evCache.push(evt);
+		
 		me.dragTime = 0;
 		initialPos = getRelativePosition(evt, container);
 		container.className += " grabbing";
@@ -254,7 +257,15 @@
 		
 	    };
 
-	    var onpointerup = function(e){
+	    var onpointerup = function(ev){
+
+		remove_event(ev);
+		
+		// If the number of pointers down is less than two then reset diff tracker
+		if (this.evCache.length < 2) {
+		    this.prevDiff = -1;
+		}
+		
 		console.log("UP", e.pointerType);
 		console.log("UP", me.enabled);		
 		//Remove class framework independent
@@ -271,12 +282,18 @@
 	    container.addEventListener("onpointerdown", onpointerdown);
 	    container.addEventListener("onpointerup", onpointerup);	    
 	    
-            if (container.attachEvent) {//if IE (and Opera depending on user setting)
-                container.attachEvent("on" + mousewheelevt, handleScroll);
-            } else if (container.addEventListener) {//WC3 browsers
-                container.addEventListener(mousewheelevt, handleScroll, false);
-            }
-            
+            container.addEventListener("wheel", handleScroll, false);
+
+	    function remove_event(ev) {
+		// Remove this event from the target's cache
+		for (var i = 0; i < this.evCache.length; i++) {
+		    if (this.evCache[i].pointerId == ev.pointerId) {
+			this.evCache.splice(i, 1);
+			break;
+		    }
+		}
+	    }
+	    
             function applyPan(dX, dY) {
                 deltaX = dX;
                 deltaY = dY;

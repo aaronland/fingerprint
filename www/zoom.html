@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+<title>Pointer Events pinch/zoom example</title>
+<meta name="viewport" content="width=device-width">
+<style>
+  div {
+    margin: 0em;
+    padding: 2em;
+  }
+  #target {
+    background: white;
+    border: 1px solid black;
+  }
+</style>
+</head>
+
+<script src="zoom.js"></script>
+<body onload="init();" style="touch-action:none">
+    
+<h1>Pointer Event pinch/zoom gesture</h1>
+
+ <div id="target">Touch and Hold with 2 pointers, then pinch in or out.<br/>
+    The background color will change to pink if the pinch is opening (Zoom In) 
+    or changes to lightblue if the pinch is closing (Zoom out).</div>
+
+ <button id="log" onclick="enableLog(event);">Start/Stop event logging</button>
+ <button id="clearlog" onclick="clearLog(event);">Clear the log</button>
+
+ <p></p>
+ <output></output>
+</body>
+</html>

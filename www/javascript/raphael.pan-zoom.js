@@ -137,13 +137,12 @@
 	};
 	
 	container.addEventListener("pointerup", onpointerup);
-	container.addEventListener("pointercancel", onpointerup);
-	container.addEventListener("pointerleave", onpointerup);	    
-	
 	container.addEventListener("pointerdown", onpointerdown);
-	container.addEventListener("pointerout", onpointerdown);	    
+	container.addEventListener("pointermove", onpointermove);
 	
-	container.addEventListener("pointermove", onpointermove);	    	    
+	// container.addEventListener("pointercancel", onpointerup);
+	// container.addEventListener("pointerleave", onpointerup);	    
+	// container.addEventListener("pointerout", onpointerdown);	    
 	
     };
 

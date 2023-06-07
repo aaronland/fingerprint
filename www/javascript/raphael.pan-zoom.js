@@ -31,13 +31,15 @@
 		    break;
 		}
 	    }
+
+	    fingerprint.feedback.info("remove " + me.evCache.length);	    
 	}
         
 	var onpointermove = function(ev){
 
 	    ev = window.event || ev;
 		  
-	    fingerprint.feedback.info("pointermove " + ev.pointerId);
+	    fingerprint.feedback.info("pointermove " + me.evCache.length);
 	    
 	    // Find this event in the cache and update its record with this event
 
@@ -101,9 +103,10 @@
 
 	    ev = window.event || ev;
 
-	    fingerprint.feedback.info("ADD " + ev.pointerId);
 	    me.evCache.push(ev);
 
+	    fingerprint.feedback.info("pointerdown " + me.evCache.length);
+	    
 	    /*
 	    if (ev.preventDefault) {
 		ev.preventDefault();
@@ -119,6 +122,8 @@
 
 	    ev = window.event || ev;	    
 	    remove_event(ev);
+
+	    fingerprint.feedback.info("pointerup " + me.evCache.length);
 	    
 	    // If the number of pointers down is less than two then reset diff tracker
 	    if (me.evCache.length < 2) {

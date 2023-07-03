@@ -1,4 +1,4 @@
-const cache_name = 'fingerprint-v0.0.19';
+const cache_name = 'fingerprint-v0.0.21';
 
 const app_files = [
     // HTML
@@ -21,6 +21,8 @@ const app_files = [
     // This has not been updated with custom changes
     // "./javascript/raphael.sketchpad.min.js",
     "./javascript/toastify.js",
+    "./javascript/simplify.js",
+    "./javascript/fit-curve.js",        
     "./javascript/wasm_exec.js",
     "./javascript/sfomuseum.wasm.js",
     

@@ -684,24 +684,78 @@
 			}
 		};
 
-		function points_to_svg() {
+	    function points_to_svg() {
+
+		var count_points = _points.length;
+		
 		    if (_points != null && _points.length > 1) {
 
 			// CUSTOM
 			// this actually makes everything brutally slow...
 			// _points = smooth(_points);
+
+			// http://mourner.github.io/simplify-js/
 			
-			var p = _points[0];
-			var path = "M" + p[0] + "," + p[1];
-			for (var i = 1, n = _points.length; i < n; i++) {
-			    p = _points[i];
-			    path += "L" + p[0] + "," + p[1]; 
+			var to_simplify = [];
+
+			for (var i=0; i < count_points; i++){
+			    to_simplify.push({ x: _points[i][0], y: _points[i][1] });
+			}
+
+			var points = simplify(to_simplify, 1, false);
+			count_points = points.length;
+
+			// https://github.com/soswow/fit-curve
+			
+			var to_fit = [];
+
+			for (var i=0; i < count_points; i++){
+			    to_fit.push([points[i].x, points[i].y]);
+			}
+
+			var points_curve = fitCurve(to_fit, 50);
+			var count_curve = points_curve.length;
+
+			if (! count_curve){
+			    return "";
+			}
+			
+			console.log(points_curve, points_curve.length);
+			
+			// https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths
+
+			var path = "M " + points_curve[0][0][0] + "," + points_curve[0][0][1];
+			
+			path += " C ";
+			path += points_curve[0][1][0] + "," + points_curve[0][1][1];
+			path += points_curve[0][2][0] + "," + points_curve[0][2][1];
+			path += points_curve[0][3][0] + "," + points_curve[0][3][1];			
+
+			for (var i=1; i < count_curve; i++){
+			    path += " S ";
+			    path += points_curve[i][2][0] + "," + points_curve[i][2][1];
+			    path += points_curve[i][3][0] + "," + points_curve[i][3][1];			    
+			}
+
+			path += "Z";
+			console.log("PATH", path);
+			return path;
+
+			/*
+			var p = points[0];
+
+			var path = "M" + p.x + "," + p.y;
+			for (var i = 1, n = count_points; i < n; i++) {
+			    p = points[i];
+			    path += "L" + p.x + "," + p.y; 
 			}
 			
 			// CUSTOM
 			path += "Z";
 			
 			return path;
+			*/
+			
 		    } else {
 			return "";
 		    }

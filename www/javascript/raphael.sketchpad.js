@@ -685,76 +685,92 @@
 		};
 
 	    function points_to_svg() {
-
-		var count_points = _points.length;
 		
-		if (_points != null && count_points > 1) {
+		if ((_points == null) || (_points.length == 0)){
+		    return "";
+		}
 
-		    // CUSTOM
+		var count_points = _points.length;		
+		var curvy = true;
+		
+		if (! curvy){
+
+		    var path = "";
+
+		    var p = _points[0];
 		    
-		    // http://mourner.github.io/simplify-js/
+		    path += "M" + p[0] + "," + p[1];
 		    
-		    var to_simplify = [];
-		    
-		    for (var i=0; i < count_points; i++){
-			to_simplify.push({ x: _points[i][0], y: _points[i][1] });
-		    }
-		    
-		    var points = simplify(to_simplify, 3, false);
-		    count_points = points.length;
-		    
-		    // https://github.com/soswow/fit-curve
-		    
-		    var to_fit = [];
-		    
-		    for (var i=0; i < count_points; i++){
-			to_fit.push([points[i].x, points[i].y]);
-		    }
-		    
-		    var points_curve = fitCurve(to_fit, 50);
-		    var count_curve = points_curve.length;
-		    
-		    if (! count_curve){
-			return "";
-		    }
-		    
-		    // https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths
-		    
-		    var path = "M " + parseInt(points_curve[0][0][0]) + "," + parseInt(points_curve[0][0][1]);
-		    
-		    path += " C ";
-		    path += parseInt(points_curve[0][1][0]) + "," + parseInt(points_curve[0][1][1]) + " ";
-		    path += parseInt(points_curve[0][2][0]) + "," + parseInt(points_curve[0][2][1]) + " ";
-		    path += parseInt(points_curve[0][3][0]) + "," + parseInt(points_curve[0][3][1]) + " ";			
-		    
-		    for (var i=1; i < count_curve; i++){
-			path += " S ";
-			path += parseInt(points_curve[i][2][0]) + "," + parseInt(points_curve[i][2][1]) + " ";
-			path += parseInt(points_curve[i][3][0]) + "," + parseInt(points_curve[i][3][1]) + " ";			    
+		    for (var i = 1, n = count_points; i < n; i++) {
+			p = _points[i];
+			path += "L" + p[0] + "," + p[1]; 
 		    }
 		    
 		    path += "Z";
 		    return path;
+		}	
+		
+		var simplify_tolerance = 3;
+		var fitcurve_error = 50;
+		
+		// http://mourner.github.io/simplify-js/
+		
+		var to_simplify = [];
+		
+		for (var i=0; i < count_points; i++){
+		    to_simplify.push({ x: _points[i][0], y: _points[i][1] });
+		}
+		    
+		var points = simplify(to_simplify, simplify_tolerance, false);
+		count_points = points.length;
+		
+		// https://github.com/soswow/fit-curve
+		
+		var to_fit = [];
+		
+		for (var i=0; i < count_points; i++){
+		    to_fit.push([points[i].x, points[i].y]);
+		}
+		
+		var points_curve = fitCurve(to_fit, fitcurve_error);
+		var count_curve = points_curve.length;
+		
+		if (! count_curve){
+		    return "";
+		}
+		
+		// https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths		
+
+		var path = "";
+		
+		path += "M " + parseInt(points_curve[0][0][0]) + "," + parseInt(points_curve[0][0][1]);
+		
+		path += " C ";
+		path += parseInt(points_curve[0][1][0]) + "," + parseInt(points_curve[0][1][1]) + " ";
+		path += parseInt(points_curve[0][2][0]) + "," + parseInt(points_curve[0][2][1]) + " ";
+		path += parseInt(points_curve[0][3][0]) + "," + parseInt(points_curve[0][3][1]) + " ";			
+		
+		for (var i=1; i < count_curve; i++){
+		    
+		    // Use the long-form so we have all the coordinates necessary for
+		    // https://pkg.go.dev/github.com/fogleman/gg#Context.CubicTo
+		    // https://github.com/aaronland/go-fingerprint/blob/main/svg/document.go
+		    
+		    path += " C ";
+		    path += parseInt(points_curve[i][1][0]) + "," + parseInt(points_curve[i][1][1]) + " ";
+		    path += parseInt(points_curve[i][2][0]) + "," + parseInt(points_curve[i][2][1]) + " ";
+		    path += parseInt(points_curve[i][3][0]) + "," + parseInt(points_curve[i][3][1]) + " ";			
 		    
 		    /*
-		       var p = points[0];
-		       
-		       var path = "M" + p.x + "," + p.y;
-		       for (var i = 1, n = count_points; i < n; i++) {
-		       p = points[i];
-		       path += "L" + p.x + "," + p.y; 
-		       }
-		       
-		       // CUSTOM
-		       path += "Z";
-		       
-		       return path;
+		       path += " S ";
+		       path += parseInt(points_curve[i][2][0]) + "," + parseInt(points_curve[i][2][1]) + " ";
+		       path += parseInt(points_curve[i][3][0]) + "," + parseInt(points_curve[i][3][1]) + " ";
 		     */
-			
-		    } else {
-			return "";
-		    }
-		};
+		}
+		
+		path += "Z";
+		return path;
+	    };
 	};
 	
 	Pen.MAX_WIDTH = 1000;

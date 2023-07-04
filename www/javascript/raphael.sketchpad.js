@@ -586,8 +586,21 @@
 		// Drawing state
 		var _drawing = false;
 		var _c = null;
-		var _points = [];
+	    var _points = [];
+	    
+	    var _curvy = false;
+	    var _curvy_tolerance = 3;	// simplify.js tolerance
+	    var _curvy_error = 50;	// fitcurve.js error
 
+	    self.curves = function(value){
+
+		if (value === undefined){
+		    return _curvy;
+		}
+		
+		_curvy = (value) ? true : false;
+	    }
+	    
 		self.color = function(value) {
 			if (value === undefined){
 		      	return _color;
@@ -691,9 +704,8 @@
 		}
 
 		var count_points = _points.length;		
-		var curvy = true;
 		
-		if (! curvy){
+		if (! _curvy){
 
 		    var path = "";
 
@@ -710,8 +722,6 @@
 		    return path;
 		}	
 		
-		var simplify_tolerance = 3;
-		var fitcurve_error = 50;
 		
 		// http://mourner.github.io/simplify-js/
 		
@@ -721,7 +731,7 @@
 		    to_simplify.push({ x: _points[i][0], y: _points[i][1] });
 		}
 		    
-		var points = simplify(to_simplify, simplify_tolerance, false);
+		var points = simplify(to_simplify, _curvy_tolerance, false);
 		count_points = points.length;
 		
 		// https://github.com/soswow/fit-curve
@@ -732,7 +742,7 @@
 		    to_fit.push([points[i].x, points[i].y]);
 		}
 		
-		var points_curve = fitCurve(to_fit, fitcurve_error);
+		var points_curve = fitCurve(to_fit, _curvy_error);
 		var count_curve = points_curve.length;
 		
 		if (! count_curve){

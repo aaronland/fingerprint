@@ -6,30 +6,39 @@ fingerprint.controls = (function(){
 
 	draw: function(){
 	    
-	    var draw = document.getElementById("draw");    
+	    var draw = document.getElementById("draw");
 	    var erase = document.getElementById("erase");
 	    var zoom = document.getElementById("zoom");    
-	    
+
 	    draw.style.backgroundColor = "#ccc";
 	    erase.style.backgroundColor = "#fff";
-	    zoom.style.backgroundColor = "#fff";
+	    // zoom.style.backgroundColor = "#fff";
 	    
 	    fingerprint.application.sketchpad.editing(true);
 	    
 	    if (fingerprint.application.panzoom){
 		fingerprint.application.panzoom.disable();
 	    }
+
+	    var pen = fingerprint.application.sketchpad.pen();
 	    
+	    if (pen.curves()){
+		var curves = document.getElementById("curves");	    	    	    		
+		curves.style.backgroundColor = "#ccc";						
+	    }	    
 	},
 	
 	erase: function(){
 	    
 	    var draw = document.getElementById("draw");    
 	    var erase = document.getElementById("erase");
+	    var curves = document.getElementById("curves");	    
 	    var zoom = document.getElementById("zoom");
 	    
 	    draw.style.backgroundColor = "#fff";
-	    zoom.style.backgroundColor = "#fff";    
+	    curves.style.backgroundColor = "#fff";
+	    
+	    // zoom.style.backgroundColor = "#fff";    
 	    erase.style.backgroundColor = "#ccc";
 	    
 	    fingerprint.application.sketchpad.editing("erase");
@@ -40,15 +49,30 @@ fingerprint.controls = (function(){
 	    
 	},
 
+	curves: function(){
+
+	    var curves = document.getElementById("curves");
+	    
+	    var pen = fingerprint.application.sketchpad.pen();
+	    
+	    if (pen.curves()){
+		curves.style.backgroundColor = "#fff";						
+		pen.curves(false);
+	    } else {
+		curves.style.backgroundColor = "#ccc";			    	    
+		pen.curves(true);
+	    }
+	},
+	
 	zoom: function(){
 
-	    var draw = document.getElementById("draw");    
+	    var draw = document.getElementById("draw");
 	    var erase = document.getElementById("erase");
 	    var zoom = document.getElementById("zoom");    
 	    
 	    draw.style.backgroundColor = "#fff";
 	    erase.style.backgroundColor = "#fff";
-	    zoom.style.backgroundColor = "#ccc";
+	    // zoom.style.backgroundColor = "#ccc";
 	    
 	    fingerprint.application.sketchpad.editing(false);
 	    

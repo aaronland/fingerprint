@@ -109,20 +109,28 @@
 		
 		// Convert an SVG path into a string, so that it's smaller when JSONified.
 		// This function is used by json().
-		function svg_path_to_string(path) {
+		    function svg_path_to_string(path) {
 			var str = "";
 			for (var i = 0, n = path.length; i < n; i++) {
-				var point = path[i];
+			    var point = path[i];
+
+			    // do not include "Z" which will not have any points
+			    if ((point[1]) && (point[2])){
 				str += point[0] + point[1] + "," + point[2];
+			    }
 			}
 			return str;
 		}
 		
 		// Convert a string into an SVG path. This reverses the above code.
-		function string_to_svg_path(str) {
+		    function string_to_svg_path(str) {
+
 			var path = [];
 			var tokens = str.split("L");
-			
+
+			// FIX ME TO ACCCOUNT FOR CURVES
+			// maybe?
+				     
 			if (tokens.length > 0) {
 				var token = tokens[0].replace("M", "");
 				var points = token.split(",");
@@ -186,13 +194,13 @@
 		};
 
 		self.undo = function() {
-			if (_action_history.undoable()) {
-				_action_history.undo();
-				_strokes = _action_history.current_strokes();
-				_redraw_strokes();
-				_fire_change();
-			}
-			return self; // function-chaining
+		    if (_action_history.undoable()) {
+			_action_history.undo();
+			_strokes = _action_history.current_strokes();
+			_redraw_strokes();
+			_fire_change();
+		    }
+		    return self; // function-chaining
 		};
 
 		self.redoable = function() {
@@ -338,7 +346,7 @@
 			
 			for (var i = 0, n = _strokes.length; i < n; i++) {
 				var stroke = _strokes[i];
-				var type = stroke.type;
+			    var type = stroke.type;
 				_paper[type]()
 					.attr(stroke)
 					.click(_pathclick);
@@ -406,17 +414,18 @@
 			_enable_user_select();
 			
 			var path = _pen.finish(e, self);
-			
+		    
 			if (path != null) {
 				// Add event when clicked.
 				path.click(_pathclick);
 				
 				// Save the stroke.
-				var stroke = path.attr();
+				    var stroke = path.attr();
+
 				stroke.type = path.type;
 				
 				_strokes.push(stroke);
-				
+			    
 				_action_history.add({
 					type: "stroke",
 					stroke: stroke
@@ -494,7 +503,7 @@
 			if (_current_state + 1 < _history.length) {
 				_history.splice(_current_state + 1, _history.length - (_current_state + 1));
 			}
-			
+
 			_history.push(action);
 			_current_state = _history.length - 1;
 			
@@ -514,8 +523,9 @@
 			return (_current_state > -1 && _current_state > _freeze_state);
 		};
 		
-		self.undo = function() {
-			if (self.undoable()) {
+	    self.undo = function() {
+
+		if (self.undoable()) {
 				_current_state--;
 				
 				// Reset current strokes.
@@ -541,7 +551,7 @@
 			if (_current_strokes == null) {
 				var strokes = [];
 				for (var i = 0; i <= _current_state; i++) {
-					var action = _history[i];
+				    var action = _history[i];
 					switch(action.type) {
 						case "init":
 						case "json":

@@ -1,3 +1,5 @@
+// This is full of custom changes specific to the fingerprint application
+
 /*
  * Raphael SketchPad
  * Version 0.5.1

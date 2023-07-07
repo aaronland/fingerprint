@@ -109,67 +109,76 @@
 			return self; // function-chaining
 		};
 		
-		// Convert an SVG path into a string, so that it's smaller when JSONified.
-		// This function is used by json().
-		    function svg_path_to_string(path) {
-			var str = "";
-			for (var i = 0, n = path.length; i < n; i++) {
-			    var point = path[i];
+	    // Convert an SVG path into a string, so that it's smaller when JSONified.
+	    // This function is used by json().
+	    
+	    function svg_path_to_string(path) {
 
-			    // do not include "Z" which will not have any points
-			    if ((point[1]) && (point[2])){
-				str += point[0] + point[1] + "," + point[2];
-			    }
+		// console.log("PATH TO STRING START", path);
+		var str = "";
+		
+		for (var i = 0, n = path.length; i < n; i++) {
+		    
+		    var point = path[i];
+		    var lead = point.shift()
+		    
+		    // because "L" will have (2) elements and "C" will have (6)
+		    str += lead + point.join(",");
+		}
+
+		// console.log("PATH TO STRING END", str);		
+		return str;
+	    }
+	    
+	    // Convert a string into an SVG path. This reverses the above code.
+	    
+	    function string_to_svg_path(str) {
+
+		console.log("STRING TO PATH START", str);
+		
+		var path = [];
+		var tokens = str.split("L");
+		
+		if (tokens.length > 0) {
+		    
+		    var token = tokens[0].replace("M", "");
+		    var points = token.split(",");
+		    
+		    path.push(["M", parseInt(points[0]), parseInt(points[1])]);
+		    
+		    for (var i = 1, n = tokens.length; i < n; i++) {
+			token = tokens[i];
+			points = token.split(",");
+			path.push(["L", parseInt(points[0]), parseInt(points[1])]);
+		    }
+		}
+
+		console.log("STRING TO PATH END", path);		
+		return path;
+	    }
+		
+	    self.json = function(value) {
+		if (value === undefined) {
+		    for (var i = 0, n = _strokes.length; i < n; i++) {
+			var stroke = _strokes[i];
+			if (typeof stroke.path == "object") {
+			    stroke.path = svg_path_to_string(stroke.path);
 			}
-			return str;
+		    }
+		    return JSON.stringify(_strokes);
 		}
 		
-		// Convert a string into an SVG path. This reverses the above code.
-		    function string_to_svg_path(str) {
-
-			var path = [];
-			var tokens = str.split("L");
-
-			// FIX ME TO ACCCOUNT FOR CURVES
-			// maybe?
-				     
-			if (tokens.length > 0) {
-				var token = tokens[0].replace("M", "");
-				var points = token.split(",");
-				path.push(["M", parseInt(points[0]), parseInt(points[1])]);
-				
-				for (var i = 1, n = tokens.length; i < n; i++) {
-					token = tokens[i];
-					points = token.split(",");
-					path.push(["L", parseInt(points[0]), parseInt(points[1])]);
-				}
-			}
-			
-			return path;
+		return self.strokes(JSON.parse(value));
+	    };
+	    
+	    self.strokes = function(value) {
+		if (value === undefined) {
+		    return _strokes;
 		}
-		
-		self.json = function(value) {
-			if (value === undefined) {
-				for (var i = 0, n = _strokes.length; i < n; i++) {
-					var stroke = _strokes[i];
-					if (typeof stroke.path == "object") {
-						stroke.path = svg_path_to_string(stroke.path);
-					}
-				}
-				return JSON.stringify(_strokes);
-			}
-			
-			return self.strokes(JSON.parse(value));
-		};
-		
-		self.strokes = function(value) {
-			if (value === undefined) {
-				return _strokes;
-			}
-			if (jQuery.isArray(value)) {
-				_strokes = value;
-				
-				for (var i = 0, n = _strokes.length; i < n; i++) {
+		if (jQuery.isArray(value)) {
+		    _strokes = value;
+		    
+		    for (var i = 0, n = _strokes.length; i < n; i++) {
 					var stroke = _strokes[i];
 					if (typeof stroke.path == "string") {
 						stroke.path = string_to_svg_path(stroke.path);

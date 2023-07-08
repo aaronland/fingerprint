@@ -59,9 +59,7 @@ This can produce images with visible "steps" when drawing curves or other non-re
 
 It is also possible to draw paths using the [cubic curve command](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths#b%C3%A9zier_curves) which consists of three pairs or `x,y` coordinates which are used to render a smooth Bezier curve.
 
-Under the hood this is taking the `x,y` coordinates collected by the default "line" drawing mode, [deriving a simplified path](https://mourner.github.io/simplify-js/) and using the result to derive the coordinates for a Bezier curve using a [JavaScript implementation](https://github.com/soswow/fit-curve) of Philip J. Schneider's "Algorithm for Automatically Fitting Digitized Curves".
-
-As of this writing there are no other optimizations or corrections made when deriving cubic curve paths and, as a result, the paths are often visibly "wobbly" and can change shape as they are drawn. In time this will be addressed.
+Under the hood this is taking the `x,y` coordinates collected by the default "line" drawing mode, [deriving a simplified path](https://mourner.github.io/simplify-js/) and using the result to derive the coordinates for a Bezier curve using a [JavaScript implementation](https://github.com/soswow/fit-curve) of Philip J. Schneider's "Algorithm for Automatically Fitting Digitized Curves". As of this writing there are no other optimizations or corrections made when deriving cubic curve paths and, as a result, the paths are often visibly "wobbly" and can change shape as they are drawn. In time this will be addressed.
 
 ![](docs/images/fingerprint-drawing-mixed-640.png)
 

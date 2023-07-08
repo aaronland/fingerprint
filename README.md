@@ -63,6 +63,8 @@ Under the hood this is taking the `x,y` coordinates collected by the default "li
 
 ![](docs/images/fingerprint-drawing-mixed-640.png)
 
+It is possible to use both `Lines` and `Curves` in a single drawing.
+
 ### Import and Export
 
 Individual drawings can be exported as PNG, JPEG, SVG and JSON files on devices that support the [File API](https://developer.mozilla.org/en-US/docs/Web/API/File_API). Drawings, stored in the SVG format, can be re-imported in to the application (assuming support for the `File` API).

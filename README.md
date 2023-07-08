@@ -37,9 +37,11 @@ Consult the [Offline support](https://github.com/aaronland/fingerprint#offline-s
 
 ### Paths
 
+The default drawing mode for paths is `Lines` mode. It is possible to toggle between `Lines` and `Curves` mode using "curve" icon to the left of the drawing (or canvas) icon.
+
 #### Lines
 
-The default type (or "command") for paths is the [line command](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths#line_commands) which is a series of `x,y` coordinates connected by straight lines.
+The default type (or "command" as defined in the SVG docs) for paths is the [line command](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths#line_commands) which is a series of `x,y` coordinates connected by straight lines.
 
 This can produce images with visible "steps" when drawing curves or other non-rectilinear paths, particularly small ones on small device screens.
 

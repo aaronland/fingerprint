@@ -1,3 +1,5 @@
+// This is full of custom changes specific to the fingerprint application
+
 /*
  * Raphael SketchPad
  * Version 0.5.1
@@ -107,59 +109,76 @@
 			return self; // function-chaining
 		};
 		
-		// Convert an SVG path into a string, so that it's smaller when JSONified.
-		// This function is used by json().
-		function svg_path_to_string(path) {
-			var str = "";
-			for (var i = 0, n = path.length; i < n; i++) {
-				var point = path[i];
-				str += point[0] + point[1] + "," + point[2];
+	    // Convert an SVG path into a string, so that it's smaller when JSONified.
+	    // This function is used by json().
+	    
+	    function svg_path_to_string(path) {
+
+		// console.log("PATH TO STRING START", path);
+		var str = "";
+		
+		for (var i = 0, n = path.length; i < n; i++) {
+		    
+		    var point = path[i];
+		    var lead = point.shift()
+		    
+		    // because "L" will have (2) elements and "C" will have (6)
+		    str += lead + point.join(",");
+		}
+
+		// console.log("PATH TO STRING END", str);		
+		return str;
+	    }
+	    
+	    // Convert a string into an SVG path. This reverses the above code.
+	    
+	    function string_to_svg_path(str) {
+
+		console.log("STRING TO PATH START", str);
+		
+		var path = [];
+		var tokens = str.split("L");
+		
+		if (tokens.length > 0) {
+		    
+		    var token = tokens[0].replace("M", "");
+		    var points = token.split(",");
+		    
+		    path.push(["M", parseInt(points[0]), parseInt(points[1])]);
+		    
+		    for (var i = 1, n = tokens.length; i < n; i++) {
+			token = tokens[i];
+			points = token.split(",");
+			path.push(["L", parseInt(points[0]), parseInt(points[1])]);
+		    }
+		}
+
+		console.log("STRING TO PATH END", path);		
+		return path;
+	    }
+		
+	    self.json = function(value) {
+		if (value === undefined) {
+		    for (var i = 0, n = _strokes.length; i < n; i++) {
+			var stroke = _strokes[i];
+			if (typeof stroke.path == "object") {
+			    stroke.path = svg_path_to_string(stroke.path);
 			}
-			return str;
+		    }
+		    return JSON.stringify(_strokes);
 		}
 		
-		// Convert a string into an SVG path. This reverses the above code.
-		function string_to_svg_path(str) {
-			var path = [];
-			var tokens = str.split("L");
-			
-			if (tokens.length > 0) {
-				var token = tokens[0].replace("M", "");
-				var points = token.split(",");
-				path.push(["M", parseInt(points[0]), parseInt(points[1])]);
-				
-				for (var i = 1, n = tokens.length; i < n; i++) {
-					token = tokens[i];
-					points = token.split(",");
-					path.push(["L", parseInt(points[0]), parseInt(points[1])]);
-				}
-			}
-			
-			return path;
+		return self.strokes(JSON.parse(value));
+	    };
+	    
+	    self.strokes = function(value) {
+		if (value === undefined) {
+		    return _strokes;
 		}
-		
-		self.json = function(value) {
-			if (value === undefined) {
-				for (var i = 0, n = _strokes.length; i < n; i++) {
-					var stroke = _strokes[i];
-					if (typeof stroke.path == "object") {
-						stroke.path = svg_path_to_string(stroke.path);
-					}
-				}
-				return JSON.stringify(_strokes);
-			}
-			
-			return self.strokes(JSON.parse(value));
-		};
-		
-		self.strokes = function(value) {
-			if (value === undefined) {
-				return _strokes;
-			}
-			if (jQuery.isArray(value)) {
-				_strokes = value;
-				
-				for (var i = 0, n = _strokes.length; i < n; i++) {
+		if (jQuery.isArray(value)) {
+		    _strokes = value;
+		    
+		    for (var i = 0, n = _strokes.length; i < n; i++) {
 					var stroke = _strokes[i];
 					if (typeof stroke.path == "string") {
 						stroke.path = string_to_svg_path(stroke.path);
@@ -186,13 +205,13 @@
 		};
 
 		self.undo = function() {
-			if (_action_history.undoable()) {
-				_action_history.undo();
-				_strokes = _action_history.current_strokes();
-				_redraw_strokes();
-				_fire_change();
-			}
-			return self; // function-chaining
+		    if (_action_history.undoable()) {
+			_action_history.undo();
+			_strokes = _action_history.current_strokes();
+			_redraw_strokes();
+			_fire_change();
+		    }
+		    return self; // function-chaining
 		};
 
 		self.redoable = function() {
@@ -338,7 +357,7 @@
 			
 			for (var i = 0, n = _strokes.length; i < n; i++) {
 				var stroke = _strokes[i];
-				var type = stroke.type;
+			    var type = stroke.type;
 				_paper[type]()
 					.attr(stroke)
 					.click(_pathclick);
@@ -406,17 +425,18 @@
 			_enable_user_select();
 			
 			var path = _pen.finish(e, self);
-			
+		    
 			if (path != null) {
 				// Add event when clicked.
 				path.click(_pathclick);
 				
 				// Save the stroke.
-				var stroke = path.attr();
+				    var stroke = path.attr();
+
 				stroke.type = path.type;
 				
 				_strokes.push(stroke);
-				
+			    
 				_action_history.add({
 					type: "stroke",
 					stroke: stroke
@@ -494,7 +514,7 @@
 			if (_current_state + 1 < _history.length) {
 				_history.splice(_current_state + 1, _history.length - (_current_state + 1));
 			}
-			
+
 			_history.push(action);
 			_current_state = _history.length - 1;
 			
@@ -514,8 +534,9 @@
 			return (_current_state > -1 && _current_state > _freeze_state);
 		};
 		
-		self.undo = function() {
-			if (self.undoable()) {
+	    self.undo = function() {
+
+		if (self.undoable()) {
 				_current_state--;
 				
 				// Reset current strokes.
@@ -541,7 +562,7 @@
 			if (_current_strokes == null) {
 				var strokes = [];
 				for (var i = 0; i <= _current_state; i++) {
-					var action = _history[i];
+				    var action = _history[i];
 					switch(action.type) {
 						case "init":
 						case "json":
@@ -586,8 +607,21 @@
 		// Drawing state
 		var _drawing = false;
 		var _c = null;
-		var _points = [];
+	    var _points = [];
+	    
+	    var _curvy = false;
+	    var _curvy_tolerance = 3;	// simplify.js tolerance
+	    var _curvy_error = 50;	// fitcurve.js error
 
+	    self.curves = function(value){
+
+		if (value === undefined){
+		    return _curvy;
+		}
+		
+		_curvy = (value) ? true : false;
+	    }
+	    
 		self.color = function(value) {
 			if (value === undefined){
 		      	return _color;
@@ -684,28 +718,90 @@
 			}
 		};
 
-		function points_to_svg() {
-		    if (_points != null && _points.length > 1) {
+	    function points_to_svg() {
+		
+		if ((_points == null) || (_points.length == 0)){
+		    return "";
+		}
 
-			// CUSTOM
-			// this actually makes everything brutally slow...
-			// _points = smooth(_points);
-			
-			var p = _points[0];
-			var path = "M" + p[0] + "," + p[1];
-			for (var i = 1, n = _points.length; i < n; i++) {
-			    p = _points[i];
-			    path += "L" + p[0] + "," + p[1]; 
-			}
-			
-			// CUSTOM
-			path += "Z";
-			
-			return path;
-		    } else {
-			return "";
+		var count_points = _points.length;		
+		
+		if (! _curvy){
+
+		    var path = "";
+
+		    var p = _points[0];
+		    
+		    path += "M" + p[0] + "," + p[1];
+		    
+		    for (var i = 1, n = count_points; i < n; i++) {
+			p = _points[i];
+			path += "L" + p[0] + "," + p[1]; 
 		    }
-		};
+		    
+		    path += "Z";
+		    return path;
+		}	
+		
+		
+		// http://mourner.github.io/simplify-js/
+		
+		var to_simplify = [];
+		
+		for (var i=0; i < count_points; i++){
+		    to_simplify.push({ x: _points[i][0], y: _points[i][1] });
+		}
+		    
+		var points = simplify(to_simplify, _curvy_tolerance, false);
+		count_points = points.length;
+		
+		// https://github.com/soswow/fit-curve
+		
+		var to_fit = [];
+		
+		for (var i=0; i < count_points; i++){
+		    to_fit.push([points[i].x, points[i].y]);
+		}
+		
+		var points_curve = fitCurve(to_fit, _curvy_error);
+		var count_curve = points_curve.length;
+		
+		if (! count_curve){
+		    return "";
+		}
+		
+		// https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths		
+
+		var path = "";
+		
+		path += "M " + parseInt(points_curve[0][0][0]) + "," + parseInt(points_curve[0][0][1]);
+		
+		path += " C ";
+		path += parseInt(points_curve[0][1][0]) + "," + parseInt(points_curve[0][1][1]) + " ";
+		path += parseInt(points_curve[0][2][0]) + "," + parseInt(points_curve[0][2][1]) + " ";
+		path += parseInt(points_curve[0][3][0]) + "," + parseInt(points_curve[0][3][1]) + " ";			
+		
+		for (var i=1; i < count_curve; i++){
+		    
+		    // Use the long-form so we have all the coordinates necessary for
+		    // https://pkg.go.dev/github.com/fogleman/gg#Context.CubicTo
+		    // https://github.com/aaronland/go-fingerprint/blob/main/svg/document.go
+		    
+		    path += " C ";
+		    path += parseInt(points_curve[i][1][0]) + "," + parseInt(points_curve[i][1][1]) + " ";
+		    path += parseInt(points_curve[i][2][0]) + "," + parseInt(points_curve[i][2][1]) + " ";
+		    path += parseInt(points_curve[i][3][0]) + "," + parseInt(points_curve[i][3][1]) + " ";			
+		    
+		    /*
+		       path += " S ";
+		       path += parseInt(points_curve[i][2][0]) + "," + parseInt(points_curve[i][2][1]) + " ";
+		       path += parseInt(points_curve[i][3][0]) + "," + parseInt(points_curve[i][3][1]) + " ";
+		     */
+		}
+		
+		path += "Z";
+		return path;
+	    };
 	};
 	
 	Pen.MAX_WIDTH = 1000;

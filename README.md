@@ -35,6 +35,36 @@ Consult the [Offline support](https://github.com/aaronland/fingerprint#offline-s
 
 ## Features
 
+_As of this writing this documentation contains a mix of screenshots from both the initial `v0.1.0` and current (`v0.2.0` or higher) releases. The principal difference is the removal of the "zoom" (or maginifying glass) icon and the addition of the "curve" (or drawing mode) icon in the bottom navigation bar. The latter was added to support drawing paths as cubic bezier curves and the former was removed because it never worked (see [issue #1](https://github.com/aaronland/fingerprint/issues/1)) and was taking up space. Eventually all the screenshots will be updated to reflect the current state of the user interface but not today. Also all of these screenshots were scaled using the wrong colour space profile so they are all more muted than the original drawings which is super annoying but it is what it is and will be fixed eventually._
+
+### Drawing Mode
+
+![](docs/images/fingerprint-drawing-controls.jpg)
+
+The default drawing mode for paths is `Lines` mode. It is possible to toggle between `Lines` and `Curves` mode using "curves" icon to the left of the drawing (or canvas) icon.
+
+#### Lines
+
+![](docs/images/fingerprint-drawing-lines-640.jpg)
+
+The default type (or "command" as defined in the SVG docs) for paths is the [line command](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths#line_commands) which is a series of `x,y` coordinates connected by straight lines.
+
+This can produce images with visible "steps" when drawing curves or other non-rectilinear paths, particularly small ones on small device screens.
+
+![](docs/images/fingerprint-drawing-lines-detail-640.png)
+
+#### Curves
+
+![](docs/images/fingerprint-drawing-curves-640.jpg)
+
+It is also possible to draw paths using the [cubic curve command](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths#b%C3%A9zier_curves) which consists of three pairs or `x,y` coordinates which are used to render a smooth Bezier curve.
+
+Under the hood this is taking the `x,y` coordinates collected by the default "line" drawing mode, [deriving a simplified path](https://mourner.github.io/simplify-js/) and using the result to derive the coordinates for a Bezier curve using a [JavaScript implementation](https://github.com/soswow/fit-curve) of Philip J. Schneider's "Algorithm for Automatically Fitting Digitized Curves". As of this writing there are no other optimizations or corrections made when deriving cubic curve paths and, as a result, the paths are often visibly "wobbly" and can change shape as they are drawn. In time this will be addressed.
+
+![](docs/images/fingerprint-drawing-mixed-640.png)
+
+It is possible to use both `Lines` and `Curves` in a single drawing.
+
 ### Import and Export
 
 Individual drawings can be exported as PNG, JPEG, SVG and JSON files on devices that support the [File API](https://developer.mozilla.org/en-US/docs/Web/API/File_API). Drawings, stored in the SVG format, can be re-imported in to the application (assuming support for the `File` API).
@@ -132,7 +162,6 @@ The goal for the application is to develop the ability to:
 
 * [Zoom in and out of an SVG canvas.](https://github.com/aaronland/fingerprint/issues/1) _This is probably the next thing I will work on since I make these drawings with my fingers and the inability to zoom in to an image makes detailed work difficult._
 * [Enlarge (or shrink) the SVG canvas, redrawing the current image in the center of the (new) canvas.](https://github.com/aaronland/fingerprint/issues/2)
-* [Smoothing of paths using Bezier curves, or a functional equivalent.](https://github.com/aaronland/fingerprint/issues/4)
 
 Suggestions, or contributions, on how to implement any of these features is welcomed.
 
@@ -145,6 +174,8 @@ Suggestions, or contributions, on how to implement any of these features is welc
 * https://github.com/eligrey/FileSaver.js/ 
 * https://github.com/apvarun/toastify-js
 * https://github.com/localForage/localForage
+* https://mourner.github.io/simplify-js/
+* https://github.com/soswow/fit-curve
 
 ### HTML 5
 

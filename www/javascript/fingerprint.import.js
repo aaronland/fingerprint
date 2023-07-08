@@ -57,48 +57,52 @@ fingerprint.import = (function(){
 			    break;
 			case "defs":
 			    break;
-			case "path":
-			    
-			    var d = kid.getAttribute("d");
-
-			    /*
-			    if (! d.endsWith("Z")){
-				fingerprint.feedback.error("Unexpected path at offset " + i + ", missing Z");
-				return;
-			    }
-			    */
+			case "path":			   
 			    
 			    var path = [];
+
+			    var d = kid.getAttribute("d");
+			    var m = d.match(/^M\s{0,}(\d+\,\d+)\s{0,}(L|C)/);
 			    
-			    var points = d.split("L");
+			    if (! m){
+				console.log("Invalid or unsupported path type", d);
+				continue;
+			    }
+
+			    var preamble = m[0];
+			    var start = m[1];
+			    var path_type = m[2];
+
+			    var xy = start.split(",");
+			    var x = parseInt(xy[0]);
+			    var y = parseInt(xy[1]);
+
+			    path.push(["M", x, y ]);
+
+			    d = d.replace(preamble, "");
+			    d = d.replace(/Z$/, "");
+			    
+			    var points = d.split(path_type);
 			    var count_points = points.length;
-
+				    
 			    for (var j=0; j < count_points; j++){
-
+				
 				var pt = points[j];
 				var coords = pt.split(",");
+				var count_coords = coords.length;
+				
+				var instructions = [
+				    path_type
+				];
 
-				var x = coords[0];
-				var y = coords[1];
-
-				var prefix = "L";
-
-				if (x.startsWith("M")){
-				    prefix = "M";
-				    x = x.replace("M", "");
+				for (var k=0; k < count_coords; k++){
+				    instructions.push(parseInt(coords[k]));
 				}
-
-				x = parseInt(x);
-				y = parseInt(y);
-
-				var instruction = [ prefix, x, y ];
-
-				if (j == (count_points - 1)){
-				    instruction.push("Z");
-				}
-
-				path.push(instruction);
+								
+				path.push(instructions);
 			    }
+
+			    path.push(["Z"]);
 			    
 			    var s = {
 				"type":"path",

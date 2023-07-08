@@ -37,7 +37,7 @@ Consult the [Offline support](https://github.com/aaronland/fingerprint#offline-s
 
 _As of this writing this documentation contains a mix of screenshots from both the initial `v0.1.0` and current (`v0.2.0` or higher) releases. The principal difference is the removal of the "zoom" (or maginifying glass) icon and the addition of the "curve" (or drawing mode) icon in the bottom navigation bar. The latter was added to support drawing paths as cubic bezier curves and the former was removed because it never worked (see [issue #1](https://github.com/aaronland/fingerprint/issues/1)) and was taking up space. Eventually all the screenshots will be updated to reflect the current state of the user interface but not today._
 
-### Paths
+### Drawing Mode
 
 ![](docs/images/fingerprint-drawing-controls.jpg)
 

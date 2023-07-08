@@ -55,7 +55,7 @@ This can produce images with visible "steps" when drawing curves or other non-re
 
 #### Curves
 
-![](docs/images/fingerprint-drawing-lines-curves-640.jpg)
+![](docs/images/fingerprint-drawing-curves-640.jpg)
 
 It is also possible to draw paths using the [cubic curve command](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths#b%C3%A9zier_curves) which consists of three pairs or `x,y` coordinates which are used to render a smooth Bezier curve.
 

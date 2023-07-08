@@ -60,16 +60,11 @@ fingerprint.import = (function(){
 			case "path":
 			    
 			    var d = kid.getAttribute("d");
-
-			    /*
-			    if (! d.endsWith("Z")){
-				fingerprint.feedback.error("Unexpected path at offset " + i + ", missing Z");
-				return;
-			    }
-			    */
 			    
 			    var path = [];
-			    
+
+			    // FIX ME to support curves...
+				
 			    var points = d.split("L");
 			    var count_points = points.length;
 

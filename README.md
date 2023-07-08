@@ -39,21 +39,31 @@ _As of this writing this documentation contains a mix of screenshots from both t
 
 ### Paths
 
+![](docs/images/fingerprint-drawing-controls.jpg)
+
 The default drawing mode for paths is `Lines` mode. It is possible to toggle between `Lines` and `Curves` mode using "curve" icon to the left of the drawing (or canvas) icon.
 
 #### Lines
+
+![](docs/images/fingerprint-drawing-lines.jpg)
 
 The default type (or "command" as defined in the SVG docs) for paths is the [line command](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths#line_commands) which is a series of `x,y` coordinates connected by straight lines.
 
 This can produce images with visible "steps" when drawing curves or other non-rectilinear paths, particularly small ones on small device screens.
 
+![](docs/images/fingerprint-drawing-lines-detail.png)
+
 #### Curves
+
+![](docs/images/fingerprint-drawing-lines-curves.jpg)
 
 It is also possible to draw paths using the [cubic curve command](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths#b%C3%A9zier_curves) which consists of three pairs or `x,y` coordinates which are used to render a smooth Bezier curve.
 
 Under the hood this is taking the `x,y` coordinates collected by the default "line" drawing mode, [deriving a simplified path](https://mourner.github.io/simplify-js/) and using the result to derive the coordinates for a Bezier curve using a [JavaScript implementation](https://github.com/soswow/fit-curve) of Philip J. Schneider's "Algorithm for Automatically Fitting Digitized Curves".
 
 As of this writing there are no other optimizations or corrections made when deriving cubic curve paths and, as a result, the paths are often visibly "wobbly" and can change shape as they are drawn. In time this will be addressed.
+
+![](docs/images/fingerprint-drawing-lines-mixed.png)
 
 ### Import and Export
 

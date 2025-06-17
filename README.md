@@ -1,10 +1,19 @@
 # fingerprint
 
+![](docs/images/fingerprint-controls-640.jpg)
+
 None of the other digital drawing tools were my jam, so I wrote my own. It's called `fingerprint`.
 
-## Description
+## Demo
 
-![](docs/images/fingerprint-controls-640.jpg)
+https://aaronland.github.io/fingerprint/
+
+Notes:
+
+* This has been tested on desktop Firefox and Safari and iOS.
+* Offline support (service workers) for the demo application is not enabled at this time (see comments below).
+
+## Motivation
 
 `fingerprint` is an opionated vector drawing application built on top of Dimitry Baranovskiy's [raphael.js](https://github.com/DmitryBaranovskiy/raphael) and a modified version of Ian Li's [raphael-sketchpad](https://github.com/ianli/raphael-sketchpad/).
 
@@ -15,15 +24,6 @@ Here's why, extracted from [a blog post](https://www.aaronland.info/weblog/2023/
 > A few years ago I got an iPad and an Apple Pencil to try "drawing" pictures with. I hated it. It's all very impressive technology and there's no question that other people are making some remarkable images with it. It is not my medium, though. Fast forward to last year when Apple started bundling their Freeform shared-whiteboarding application in iOS. Among other things, the application allows you to make freehand drawings using a small set of "tools" one of them being a bezier-fill tool that automatically closes any path you draw and fills it with the selected colour. These images were made this way. Unlike the Pencil and the many sketching apps which attempt to mimic real-world, analog, tools one of the reasons I find the bezier-fill tool fascinating is because it feels uniquely digital. ... If there's documentation on the file format that the Freeform application stores things in I haven't been able to find it. Nor have I been able to find where the files are stored, either on my phone or my laptop. The only way I've found to export these images is as PDF files. Once they are exported as PDF files they are also encoded as raster images rather than the native vector graphics I assume them to be. This is disappointing because in my efforts to figure out how to give these images some degree of permanence outside of a digital infrastructure it would be helpful to have the raw vector instructions. Sol Lewitt jokes are left as an exercise to the reader.
 
 So, this is that tool (sort of) but a tool whose native format is SVG. This is a tool I built by, and for, myself. It is being shared in the spirit of generousity but it may not be the right tool for you. That's okay. None of the other tools were right for me. This one isn't perfect but at least I know and understand its constraints and it's something that can be improved.
-
-## Demo
-
-https://aaronland.github.io/fingerprint/
-
-Notes:
-
-* This has been tested on desktop Firefox and Safari and iOS.
-* Offline support (service workers) for the demo application is not enabled at this time (see comments below).
 
 ## Install
 

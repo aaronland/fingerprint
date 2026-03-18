@@ -63,6 +63,7 @@ fingerprint.import = (function(){
 
 			    var d = kid.getAttribute("d");
 			    var m = d.match(/^M\s{0,}(\d+\,\d+)\s{0,}(L|C)/);
+			    // var m = d.match(/^M\s{0,}\d+(?:\.\d+)?\,\d+(?:\.\d+)?\s{0,}(L|C)/);			    
 			    
 			    if (! m){
 				console.log("Invalid or unsupported path type", d);

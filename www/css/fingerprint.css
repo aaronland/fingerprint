@@ -114,6 +114,15 @@ footer {
 	display: none;
 }
 
+#settings-version-wrapper {
+	margin-left: .75rem;
+	margin-bottom: .5rem;
+}
+
+#settings-version {
+	font-weight:700;
+}
+
 #share-dialog-exif-wrapper {
 	display:none;
 }
@@ -184,6 +193,10 @@ footer {
 
 	#show-colour-picker {
 		padding-top:.6rem;
+	}
+
+	#settings-version-wrapper {
+		margin-left: 1rem !important;
 	}
 }
 

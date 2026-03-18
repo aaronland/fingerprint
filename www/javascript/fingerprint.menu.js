@@ -125,6 +125,22 @@ fingerprint.menu = (function(){
 	show_settings_dialog: function(){
 	    var el = document.getElementById("settings-dialog");
 	    el.showModal();
+
+	    // this is a nice idea but is flaky...
+	    
+	    /*
+	    caches.keys().then((rsp) => {
+
+		const v = document.querySelector("#settings-version");
+
+		if (v){
+		    v.innerText = rsp[0];
+		}
+		
+	    }).catch((err) => {
+		console.error("Failed to determine version", err);
+	    });
+	    */
 	},
 	
 	toggle_control: function(id, style){

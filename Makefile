@@ -1,2 +1,2 @@
 debug:
-	fileserver -root www
+	fileserver -root www -mimetype .wasm=application/wasm

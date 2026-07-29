@@ -6,7 +6,7 @@ const app_files = [
     "./index.html",
     
     // CSS
-    "./css/bootstrap.min.css",
+    "./css/bootstrap.5.3.8.min.css",
     "./css/fingerprint.css",
     "./css/toastify.min.css",
     

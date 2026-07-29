@@ -1,4 +1,4 @@
-const cache_name = 'fingerprint-v0.0.38';
+const cache_name = 'fingerprint-v0.0.39';
 // Remember to keep this in sync with the version number in index.html
 
 const app_files = [
@@ -14,14 +14,16 @@ const app_files = [
     
     "./javascript/FileSaver.min.js",
     "./javascript/XmlBeautify.js",
-    "./javascript/jquery-3.6.3.min.js",
+    "./javascript/jquery-migrate-4.0.2x.min.js",    
+    "./javascript/jquery-4.0.0.slim.min.js",
     "./javascript/localforage.min.js",
     "./javascript/raphael.min.js",
     "./javascript/toastify.js",
     "./javascript/simplify.js",
     "./javascript/fit-curve.min.js",        
-    "./javascript/wasm_exec.js",
-    "./javascript/sfomuseum.wasm.js",
+
+    "./javascript/sfomuseum.golang.wasm.bundle.js",
+    "./javascript/offline.application.js",
     
     // Javascript application
 
@@ -37,7 +39,7 @@ const app_files = [
     "./javascript/fingerprint.import.js",        
     "./javascript/fingerprint.init.js",
     "./javascript/fingerprint.menu.js",
-    "./javascript/fingerprint.offline.js",
+    // "./javascript/fingerprint.offline.js",
     "./javascript/fingerprint.render.js",
     "./javascript/fingerprint.share.js",
     "./javascript/fingerprint.storage.js",

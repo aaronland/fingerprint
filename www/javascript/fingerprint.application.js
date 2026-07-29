@@ -36,7 +36,8 @@ fingerprint.application = (function(){
 	    // are other settings this will need to be revisited.
 	    
 	    if (offline_scope){
-		fingerprint.offline.init(offline_scope);
+		// fingerprint.offline.init(offline_scope);
+		offline.application.init(offline_scope);
 		fingerprint.menu.show_settings_control();
 	    }
 	},

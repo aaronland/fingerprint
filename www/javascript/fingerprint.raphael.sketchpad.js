@@ -175,7 +175,8 @@
 		if (value === undefined) {
 		    return _strokes;
 		}
-		if (jQuery.isArray(value)) {
+		// if (jQuery.isArray(value)) {
+		if (Array.isArray(value)) {		    
 		    _strokes = value;
 		    
 		    for (var i = 0, n = _strokes.length; i < n; i++) {
@@ -480,7 +481,8 @@
 		
 		// Path data
 		var _strokes = _options.strokes;
-		if (jQuery.isArray(_strokes) && _strokes.length > 0) {
+	    // if (jQuery.isArray(_strokes) && _strokes.length > 0) {
+		if (Array.isArray(_strokes) && _strokes.length > 0) {		
 			_action_history.add({
 				type: "init",
 				strokes: jQuery.merge([], _strokes)	// Make a clone.

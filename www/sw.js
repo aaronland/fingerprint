@@ -1,4 +1,4 @@
-const cache_name = 'fingerprint-v0.0.39';
+const cache_name = 'fingerprint-v1.0.0b1';
 // Remember to keep this in sync with the version number in index.html
 
 const app_files = [
@@ -8,7 +8,7 @@ const app_files = [
     // CSS
     "./css/bootstrap.5.3.8.min.css",
     "./css/fingerprint.css",
-    "./css/toastify.min.css",
+    "./css/toastify.1.12.0.min.css",
     
     // Javascript dependencies
     
@@ -16,8 +16,8 @@ const app_files = [
     "./javascript/XmlBeautify.js",
     "./javascript/localforage.min.js",
     "./javascript/raphael.min.js",
-    "./javascript/toastify.js",
-    "./javascript/simplify.js",
+    "./javascript/toastify.1.12.0.js",
+    "./javascript/simplify.1.2.4.js",
     "./javascript/fit-curve.min.js",        
 
     "./javascript/sfomuseum.golang.wasm.bundle.js",

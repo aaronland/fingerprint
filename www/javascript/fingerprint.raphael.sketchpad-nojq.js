@@ -13,6 +13,15 @@
        Public API
        ----------------------------------------------------------------- */
 
+    /**
+     * Creates a new sketchpad on a Raphael paper.
+     *
+     * @param {Raphael.Paper|String|Array} paper  The Raphael paper to draw on,
+     *        an element ID string, or an array with 3 elements
+     *        (`[id, width, height]`).
+     * @param {Object} [options]  Optional configuration object.
+     * @returns {SketchPad} The created sketchpad instance.
+     */
     Raphael.sketchpad = function (paper, options) {
         return new SketchPad(paper, options);
     };
@@ -24,6 +33,20 @@
        SketchPad implementation
        ----------------------------------------------------------------- */
 
+    /**
+     * SketchPad constructor.  Handles drawing, editing, history,
+     * serialization, and animation of strokes.
+     *
+     * @class
+     * @param {Raphael.Paper|String|Array} paper  The Raphael paper to draw on,
+     *        an element ID string, or an array with 3 elements.
+     * @param {Object} [options]  Optional configuration object.
+     * @param {number} [options.width=100]  Width of the canvas.
+     * @param {number} [options.height=100] Height of the canvas.
+     * @param {Array}  [options.strokes=[]] Initial strokes to load.
+     * @param {boolean|string} [options.editing=true] Editing mode: `true`,
+     *        `"erase"` or `false`.
+     */
     var SketchPad = function (paper, options) {
         var self = this;
 
@@ -59,10 +82,33 @@
            Public Methods
            ----------------------------------------------------------------- */
 
+        /**
+         * Returns the underlying Raphael paper.
+         *
+         * @returns {Raphael.Paper}
+         */
         self.paper = function () { return _paper; };
+
+        /**
+         * Returns the SVG canvas element.
+         *
+         * @returns {HTMLElement}
+         */
         self.canvas = function () { return _canvas; };
+
+        /**
+         * Returns the container element that holds the canvas.
+         *
+         * @returns {HTMLElement}
+         */
         self.container = function () { return _container; };
 
+        /**
+         * Gets or sets the current pen.
+         *
+         * @param {Pen} [value]  The pen to use.
+         * @returns {Pen|SketchPad}  The current pen or the sketchpad instance for chaining.
+         */
         self.pen = function (value) {
             if (value === undefined) { return _pen; }
             _pen = value;
@@ -100,7 +146,12 @@
             return path;
         }
 
-        /* JSON interface */
+        /**
+         * Serializes or deserializes the sketchpad to/from JSON.
+         *
+         * @param {string} [value]  If provided, deserializes the given JSON string.
+         * @returns {string|SketchPad}  JSON string or the sketchpad instance for chaining.
+         */
         self.json = function (value) {
             if (value === undefined) {
                 for (var i = 0, n = _strokes.length; i < n; i++) {
@@ -115,6 +166,12 @@
         };
 
         /* Stroke handling */
+        /**
+         * Gets or sets the strokes array.
+         *
+         * @param {Array} [value]  If provided, sets the strokes to this array.
+         * @returns {Array|SketchPad}  The current strokes array or the sketchpad instance.
+         */
         self.strokes = function (value) {
             if (value === undefined) { return _strokes; }
             if (Array.isArray(value)) {
@@ -139,8 +196,26 @@
         };
 
         /* History */
+        /**
+         * Freezes the history at the current state (or at the specified index).
+         *
+         * @param {number} [index]  Optional index to freeze at.
+         * @returns {SketchPad}
+         */
         self.freeze_history = function () { _action_history.freeze(); };
+
+        /**
+         * Indicates whether an undo operation is possible.
+         *
+         * @returns {boolean}
+         */
         self.undoable = function () { return _action_history.undoable(); };
+
+        /**
+         * Undoes the last action if possible.
+         *
+         * @returns {SketchPad}
+         */
         self.undo = function () {
             if (_action_history.undoable()) {
                 _action_history.undo();
@@ -150,9 +225,21 @@
             }
             return self;
         };
+
+        /**
+         * Indicates whether a redo operation is possible.
+         *
+         * @returns {boolean}
+         */
         self.redoable = function () { return _action_history.redoable(); };
+
+        /**
+         * Redoes the last undone action if possible.
+         *
+         * @returns {SketchPad}
+         */
         self.redo = function () {
-            if (_action_history.redoable()) {
+            if (self.redoable()) {
                 _action_history.redo();
                 _strokes = _action_history.current_strokes();
                 _redraw_strokes();
@@ -160,6 +247,12 @@
             }
             return self;
         };
+
+        /**
+         * Clears all strokes from the sketchpad.
+         *
+         * @returns {SketchPad}
+         */
         self.clear = function () {
             _action_history.add({ type: "clear" });
             _strokes = [];
@@ -169,6 +262,12 @@
         };
 
         /* Animate strokes */
+        /**
+         * Animates the drawing of all strokes over the given time interval.
+         *
+         * @param {number} [ms=500]  Milliseconds between drawing each stroke.
+         * @returns {SketchPad}
+         */
         self.animate = function (ms) {
             ms = ms === undefined ? 500 : ms;
             _paper.clear();
@@ -189,6 +288,13 @@
         };
 
         /* Editing mode (draw / erase / view) */
+        /**
+         * Sets or gets the editing mode.
+         *
+         * @param {boolean|string} [mode]  If provided, sets the mode.
+         *        `true`/`false` enable/disable editing, `"erase"` activates eraser.
+         * @returns {boolean|string|SketchPad}  Current mode or the sketchpad instance.
+         */
         self.editing = function (mode) {
             if (mode === undefined) { return _options.editing; }
             _options.editing = mode;
@@ -237,6 +343,13 @@
            Change events
            ----------------------------------------------------------------- */
 
+        /**
+         * Registers a callback that is invoked whenever the sketchpad changes.
+         *
+         * @param {Function|null|undefined} fn  The callback function.
+         *        If omitted or null, removes any existing callback.
+         * @returns {void}
+         */
         var _change_fn = function () {};
         self.change = function (fn) {
             if (fn == null || fn === undefined) {
@@ -251,6 +364,12 @@
            Miscellaneous methods
            ----------------------------------------------------------------- */
 
+        /**
+         * Redraws all strokes onto the paper.
+         *
+         * @private
+         * @returns {void}
+         */
         function _redraw_strokes() {
             _paper.clear();
             for (var i = 0, n = _strokes.length; i < n; i++) {
@@ -260,6 +379,12 @@
             }
         }
 
+        /**
+         * Disables text selection on all elements in the document.
+         *
+         * @private
+         * @returns {void}
+         */
         function _disable_user_select() {
             var elems = document.querySelectorAll('*');
             for (var i = 0; i < elems.length; i++) {
@@ -268,6 +393,12 @@
             }
         }
 
+        /**
+         * Enables text selection on all elements in the document.
+         *
+         * @private
+         * @returns {void}
+         */
         function _enable_user_select() {
             var elems = document.querySelectorAll('*');
             for (var i = 0; i < elems.length; i++) {
@@ -280,6 +411,13 @@
            Event handlers
            ----------------------------------------------------------------- */
 
+        /**
+         * Handles click events on strokes when in eraser mode.
+         *
+         * @private
+         * @param {MouseEvent} e  The click event.
+         * @returns {void}
+         */
         function _pathclick(e) {
             if (_options.editing === "erase") {
                 var stroke = this.attr();
@@ -302,15 +440,36 @@
             }
         }
 
+        /**
+         * Handles mousedown events to start a new stroke.
+         *
+         * @private
+         * @param {MouseEvent} e  The mousedown event.
+         * @returns {void}
+         */
         function _mousedown(e) {
             _disable_user_select();
             _pen.start(e, self);
         }
 
+        /**
+         * Handles mousemove events to continue a stroke.
+         *
+         * @private
+         * @param {MouseEvent} e  The mousemove event.
+         * @returns {void}
+         */
         function _mousemove(e) {
             _pen.move(e, self);
         }
 
+        /**
+         * Handles mouseup events to finish a stroke.
+         *
+         * @private
+         * @param {MouseEvent} e  The mouseup event.
+         * @returns {void}
+         */
         function _mouseup(e) {
             _enable_user_select();
             var path = _pen.finish(e, self);
@@ -329,6 +488,13 @@
         }
 
         /* Touch helpers – convert touch to synthetic mouse event */
+        /**
+         * Handles touchstart events, converting them to a synthetic mouse event.
+         *
+         * @private
+         * @param {TouchEvent} e  The touchstart event.
+         * @returns {void}
+         */
         function _touchstart(e) {
             e.preventDefault();
             if (e.touches.length === 1) {
@@ -341,6 +507,13 @@
             }
         }
 
+        /**
+         * Handles touchmove events, converting them to a synthetic mouse event.
+         *
+         * @private
+         * @param {TouchEvent} e  The touchmove event.
+         * @returns {void}
+         */
         function _touchmove(e) {
             e.preventDefault();
             if (e.touches.length === 1) {
@@ -353,6 +526,13 @@
             }
         }
 
+        /**
+         * Handles touchend events, converting them to a synthetic mouse event.
+         *
+         * @private
+         * @param {TouchEvent} e  The touchend event.
+         * @returns {void}
+         */
         function _touchend(e) {
             e.preventDefault();
             _mouseup(e);
@@ -384,6 +564,11 @@
        ActionHistory implementation
        ----------------------------------------------------------------- */
 
+    /**
+     * ActionHistory keeps a stack of user actions to enable undo/redo.
+     *
+     * @class
+     */
     var ActionHistory = function () {
         var self = this;
         var _history = [];
@@ -391,6 +576,12 @@
         var _freeze_state = -1;
         var _current_strokes = null;
 
+        /**
+         * Adds a new action to the history stack.
+         *
+         * @param {Object} action  An object describing the action.
+         * @returns {void}
+         */
         self.add = function (action) {
             if (_current_state + 1 < _history.length) {
                 _history.splice(_current_state + 1);
@@ -400,14 +591,30 @@
             _current_strokes = null;
         };
 
+        /**
+         * Freezes the history at the current state or a specific index.
+         *
+         * @param {number} [index]  Optional index to freeze at.
+         * @returns {void}
+         */
         self.freeze = function (index) {
             _freeze_state = (index === undefined) ? _current_state : index;
         };
 
+        /**
+         * Determines if an undo operation is available.
+         *
+         * @returns {boolean}
+         */
         self.undoable = function () {
             return _current_state > -1 && _current_state > _freeze_state;
         };
 
+        /**
+         * Performs an undo operation if possible.
+         *
+         * @returns {void}
+         */
         self.undo = function () {
             if (self.undoable()) {
                 _current_state--;
@@ -415,10 +622,20 @@
             }
         };
 
+        /**
+         * Determines if a redo operation is available.
+         *
+         * @returns {boolean}
+         */
         self.redoable = function () {
             return _current_state < _history.length - 1;
         };
 
+        /**
+         * Performs a redo operation if possible.
+         *
+         * @returns {void}
+         */
         self.redo = function () {
             if (self.redoable()) {
                 _current_state++;
@@ -426,6 +643,11 @@
             }
         };
 
+        /**
+         * Computes the strokes that represent the current state.
+         *
+         * @returns {Array}  Array of stroke objects.
+         */
         self.current_strokes = function () {
             if (_current_strokes == null) {
                 var strokes = [];
@@ -464,6 +686,11 @@
        Pen implementation
        ----------------------------------------------------------------- */
 
+    /**
+     * Pen represents the drawing tool used by SketchPad.
+     *
+     * @class
+     */
     var Pen = function () {
         var self = this;
         var _color = "#000000";
@@ -480,17 +707,35 @@
         var _curvy_tolerance = 3;    // simplify.js tolerance
         var _curvy_error = 50;       // fitcurve.js error
 
+        /**
+         * Enables or disables curve smoothing for the pen.
+         *
+         * @param {boolean} [value]  If provided, sets curve mode.
+         * @returns {boolean|Pen}  Current curve mode or the pen instance.
+         */
         self.curves = function (value) {
             if (value === undefined) { return _curvy; }
             _curvy = !!value;
         };
 
+        /**
+         * Gets or sets the pen color.
+         *
+         * @param {string} [value]  If provided, sets the pen color.
+         * @returns {string|Pen}  Current color or the pen instance.
+         */
         self.color = function (value) {
             if (value === undefined) { return _color; }
             _color = value;
             return self;
         };
 
+        /**
+         * Gets or sets the pen width.
+         *
+         * @param {number} [value]  If provided, sets the pen width.
+         * @returns {number|Pen}  Current width or the pen instance.
+         */
         self.width = function (value) {
             if (value === undefined) { return _width; }
             if (value < Pen.MIN_WIDTH) { value = Pen.MIN_WIDTH; }
@@ -499,6 +744,12 @@
             return self;
         };
 
+        /**
+         * Gets or sets the pen opacity.
+         *
+         * @param {number} [value]  If provided, sets the opacity (0–1).
+         * @returns {number|Pen}  Current opacity or the pen instance.
+         */
         self.opacity = function (value) {
             if (value === undefined) { return _opacity; }
             if (value < 0) { value = 0; }
@@ -507,6 +758,13 @@
             return self;
         };
 
+        /**
+         * Starts a new stroke.
+         *
+         * @param {MouseEvent} e  The event that triggered the start.
+         * @param {SketchPad} sketchpad  The owning sketchpad instance.
+         * @returns {void}
+         */
         self.start = function (e, sketchpad) {
             _drawing = true;
 
@@ -527,6 +785,13 @@
             });
         };
 
+        /**
+         * Finishes the current stroke and returns the resulting path.
+         *
+         * @param {MouseEvent} e  The event that triggered the finish.
+         * @param {SketchPad} sketchpad  The owning sketchpad instance.
+         * @returns {Raphael.Element|null}  The finished path element or null.
+         */
         self.finish = function (e, sketchpad) {
             var path = null;
             if (_c != null) {
@@ -542,6 +807,13 @@
             return path;
         };
 
+        /**
+         * Continues the current stroke as the pointer moves.
+         *
+         * @param {MouseEvent} e  The event that triggered the move.
+         * @param {SketchPad} sketchpad  The owning sketchpad instance.
+         * @returns {void}
+         */
         self.move = function (e, sketchpad) {
             if (_drawing) {
                 var x = e.pageX - _offset.left;
@@ -551,6 +823,12 @@
             }
         };
 
+        /**
+         * Converts the collected points into an SVG path string.
+         *
+         * @private
+         * @returns {string}  SVG path data.
+         */
         function points_to_svg() {
             if (!_points || _points.length <= 1) { return ""; }
             var count_points = _points.length;
@@ -606,6 +884,12 @@
        Utility: string representation of an object
        ----------------------------------------------------------------- */
 
+    /**
+     * Generates a human‑readable string representation of an object.
+     *
+     * @param {Object} obj  The object to inspect.
+     * @returns {string}  String representation.
+     */
     function inspect(obj) {
         var str = "";
         for (var i in obj) {
@@ -620,6 +904,12 @@
    Raphael.fn.display – keep for compatibility
    ----------------------------------------------------------------- */
 
+/**
+ * Renders an array of Raphael elements onto the paper.
+ *
+ * @param {Array} elements  Array of Raphael element descriptors.
+ * @returns {void}
+ */
 Raphael.fn.display = function (elements) {
     for (var i = 0, n = elements.length; i < n; i++) {
         var e = elements[i];
@@ -632,6 +922,14 @@ Raphael.fn.display = function (elements) {
    Utility functions to compare objects by Phil Rathe
    ----------------------------------------------------------------- */
 
+/**
+ * Returns a string identifying the type of the given object.
+ *
+ * @param {*} o  The object to type‑check.
+ * @returns {string}  One of: "string", "boolean", "number", "nan",
+ *          "undefined", "null", "array", "date", "regexp",
+ *          "object", or "function".
+ */
 function hoozit(o) {
     if (o.constructor === String) { return "string"; }
     if (o.constructor === Boolean) { return "boolean"; }
@@ -648,6 +946,14 @@ function hoozit(o) {
     return undefined;
 }
 
+/**
+ * Calls a callback based on the object's type.
+ *
+ * @param {*} o  The object to inspect.
+ * @param {Object} callbacks  Map of type names to functions.
+ * @param {Array} args  Arguments to pass to the callback.
+ * @returns {*}  Result of the callback.
+ */
 function bindCallbacks(o, callbacks, args) {
     var prop = hoozit(o);
     if (prop && typeof callbacks[prop] === "function") {
@@ -656,6 +962,12 @@ function bindCallbacks(o, callbacks, args) {
     return callbacks[prop];
 }
 
+/**
+ * Deep equality comparison for arbitrary objects.
+ *
+ * @returns {Function}  A function that takes two values and returns
+ *          true if they are deeply equivalent.
+ */
 var equiv = (function () {
     var innerEquiv;
     var callbacks = (function () {

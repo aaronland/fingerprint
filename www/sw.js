@@ -1,4 +1,4 @@
-const cache_name = 'fingerprint-v1.0.0b2';
+const cache_name = 'fingerprint-v1.0.0b4';
 // Remember to keep this in sync with the version number in index.html
 
 const app_files = [
@@ -14,8 +14,8 @@ const app_files = [
     
     "./javascript/FileSaver.min.js",
     "./javascript/XmlBeautify.js",
-    "./javascript/localforage.min.js",
-    "./javascript/raphael.min.js",
+    "./javascript/localforage.1.1.0.min.js",
+    "./javascript/raphael.2.3.0.min.js",
     "./javascript/toastify.1.12.0.js",
     "./javascript/simplify.1.2.4.js",
     "./javascript/fit-curve.min.js",        

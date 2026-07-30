@@ -14,8 +14,6 @@ const app_files = [
     
     "./javascript/FileSaver.min.js",
     "./javascript/XmlBeautify.js",
-    "./javascript/jquery-migrate-4.0.2x.min.js",    
-    "./javascript/jquery-4.0.0.slim.min.js",
     "./javascript/localforage.min.js",
     "./javascript/raphael.min.js",
     "./javascript/toastify.js",
@@ -27,7 +25,7 @@ const app_files = [
     
     // Javascript application
 
-    "./javascript/fingerprint.raphael.sketchpad.js",    
+    "./javascript/fingerprint.raphael.sketchpad-nojq.js",    
     "./javascript/fingerprint.application.js",
     "./javascript/fingerprint.capabilities.js",
     "./javascript/fingerprint.colours.js",
@@ -39,7 +37,6 @@ const app_files = [
     "./javascript/fingerprint.import.js",        
     "./javascript/fingerprint.init.js",
     "./javascript/fingerprint.menu.js",
-    // "./javascript/fingerprint.offline.js",
     "./javascript/fingerprint.render.js",
     "./javascript/fingerprint.share.js",
     "./javascript/fingerprint.storage.js",

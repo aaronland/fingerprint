@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <link rel="manifest" href="manifest.json" />
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.5.3.8.min.css" />    
-    <link rel="stylesheet" type="text/css" href="css/toastify.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.5.3.8.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/toastify.1.12.0.min.css" />
     <link rel="stylesheet" type="text/css" href="css/fingerprint.css" />
   </head>
   <body data-offline-scope="">
@@ -490,19 +490,18 @@
 	  
   </body>
 
-  <!-- jQuery is a dependency of raphael.sketchpad.js -->
-  <script type="text/javascript" src="javascript/jquery-4.0.0.slim.min.js"></script>
   <script type="text/javascript" src="javascript/localforage.min.js"></script>
   <script type="text/javascript" src="javascript/raphael.min.js"></script>
   <script type="text/javascript" src="javascript/FileSaver.min.js"></script>
-  <script type="text/javascript" src="javascript/toastify.js"></script>
-  <script type="text/javascript" src="javascript/simplify.js"></script>
+  <script type="text/javascript" src="javascript/toastify.1.12.0.js"></script>
+  <script type="text/javascript" src="javascript/simplify.1.2.4.js"></script>
   <script type="text/javascript" src="javascript/fit-curve.min.js"></script>      
   <script type="text/javascript" src="javascript/XmlBeautify.js"></script>
 
   <script type="text/javascript" src="javascript/sfomuseum.golang.wasm.bundle.js"></script>
-
-  <script type="text/javascript" src="javascript/fingerprint.raphael.sketchpad.js"></script>
+  <script type="text/javascript" src="javascript/offline.application.js"></script>
+  
+  <script type="text/javascript" src="javascript/fingerprint.raphael.sketchpad-nojq.js"></script>
   <script type="text/javascript" src="javascript/fingerprint.capabilities.js"></script>
   <script type="text/javascript" src="javascript/fingerprint.feedback.js"></script>
   <script type="text/javascript" src="javascript/fingerprint.menu.js"></script>
@@ -516,10 +515,7 @@
   <script type="text/javascript" src="javascript/fingerprint.colours.js"></script>  
   <script type="text/javascript" src="javascript/fingerprint.viewsource.js"></script>
   <script type="text/javascript" src="javascript/fingerprint.drawing.js"></script>
-  <script type="text/javascript" src="javascript/fingerprint.application.js"></script>
-
-  <script type="text/javascript" src="javascript/offline.application.js"></script>  
-  
+  <script type="text/javascript" src="javascript/fingerprint.application.js"></script>  
   <script type="text/javascript" src="javascript/fingerprint.init.js"></script>        
   
 </html>

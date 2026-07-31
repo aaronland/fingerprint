@@ -123,6 +123,12 @@ footer {
 	font-weight:700;
 }
 
+#settings-version-sw {
+	font-weight: initial;
+	font-size: small;
+	font-family:monospace;
+}
+
 #share-dialog-exif-wrapper {
 	display:none;
 }

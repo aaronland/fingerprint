@@ -77,8 +77,34 @@ fingerprint.application = (function(){
             // are other settings this will need to be revisited.
             
             if (offline_scope){
+		
                 offline.application.init(offline_scope);
                 fingerprint.menu.show_settings_control();
+		
+		if (navigator.serviceWorker.controller){
+
+		    navigator.serviceWorker.controller.postMessage({
+			type: 'GET_CACHE_VERSION',
+		    });
+
+		    navigator.serviceWorker.addEventListener('message', (event) => {
+			
+			console.debug("SW MESSAGE RECEIVED", event);
+			
+			if (event.data && event.data.type === 'CACHE_VERSION'){
+
+			    try {
+				const version_el = document.querySelector("#settings-version-sw");
+				version_el.innerText = " (service worker " + event.data.value + ")";
+			    } catch {
+				console.error("Failed to assign SW version", err);
+			    }
+			    
+			}
+		    });
+		} else {
+		    console.warn('No Service Worker controlling this page, unable to determine SW version.');
+		}
             }
         },
 

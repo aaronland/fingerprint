@@ -1,5 +1,5 @@
-const cache_name = 'fingerprint-v1.0.0b5';
-// Remember to keep this in sync with the version number in index.html
+const cache_name = 'fingerprint-v1.0.0b14';
+// Actual version number is set in index.html
 
 const app_files = [
     // HTML
@@ -40,6 +40,7 @@ const app_files = [
     "./javascript/fingerprint.render.js",
     "./javascript/fingerprint.share.js",
     "./javascript/fingerprint.storage.js",
+    "./javascript/fingerprint.offline.js",    
     "./javascript/fingerprint.viewsource.js",
 
     // WASM
@@ -49,6 +50,17 @@ const app_files = [
     // Javascript service workers
     "./sw.js"    
 ];
+
+self.addEventListener('message', (event) => {
+
+    if (event.data && event.data.type === 'GET_CACHE_VERSION') {
+	
+	event.source.postMessage({
+	    type: 'CACHE_VERSION',
+	    value: cache_name,
+	});
+    }
+});
 
 self.addEventListener("install", (e) => {
 

@@ -463,10 +463,10 @@
   <path d="M4.81 1.37A6.5 6.5 0 0 1 14.56 7a.5.5 0 1 1-1 0 5.5 5.5 0 0 0-8.25-4.765.5.5 0 0 1-.5-.865Zm-.89 1.257a.5.5 0 0 1 .04.706A5.478 5.478 0 0 0 2.56 7a.5.5 0 0 1-1 0c0-1.664.626-3.184 1.655-4.333a.5.5 0 0 1 .706-.04ZM1.915 8.02a.5.5 0 0 1 .346.616l-.779 2.767a.5.5 0 1 1-.962-.27l.778-2.767a.5.5 0 0 1 .617-.346Zm12.15.481a.5.5 0 0 1 .49.51c-.03 1.499-.161 3.025-.727 4.533l-.07.187a.5.5 0 0 1-.936-.351l.07-.187c.506-1.35.634-2.74.663-4.202a.5.5 0 0 1 .51-.49Z"/>
 	      </svg>
 			  
-	                  <span id="settings-version">fingerprint v1.0.0b3</span>
+	                  <span id="settings-version">fingerprint v1.0.0 <span id="settings-version-sw"></span></span>
 		      </button>
 		      
-		      <button class="btn" id="purge-cache-button" onclick="offline.application.purge_with_confirmation();return false;">
+		      <button class="btn" id="purge-cache-button" onclick="fingerprint.offline.purge();return false;">
 			  <!-- https://icons.getbootstrap.com/icons/recycle/ -->
 			  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-recycle" viewBox="0 0 16 16">
 			      <path d="M9.302 1.256a1.5 1.5 0 0 0-2.604 0l-1.704 2.98a.5.5 0 0 0 .869.497l1.703-2.981a.5.5 0 0 1 .868 0l2.54 4.444-1.256-.337a.5.5 0 1 0-.26.966l2.415.647a.5.5 0 0 0 .613-.353l.647-2.415a.5.5 0 1 0-.966-.259l-.333 1.242-2.532-4.431zM2.973 7.773l-1.255.337a.5.5 0 1 1-.26-.966l2.416-.647a.5.5 0 0 1 .612.353l.647 2.415a.5.5 0 0 1-.966.259l-.333-1.242-2.545 4.454a.5.5 0 0 0 .434.748H5a.5.5 0 0 1 0 1H1.723A1.5 1.5 0 0 1 .421 12.24l2.552-4.467zm10.89 1.463a.5.5 0 1 0-.868.496l1.716 3.004a.5.5 0 0 1-.434.748h-5.57l.647-.646a.5.5 0 1 0-.708-.707l-1.5 1.5a.498.498 0 0 0 0 .707l1.5 1.5a.5.5 0 1 0 .708-.707l-.647-.647h5.57a1.5 1.5 0 0 0 1.302-2.244l-1.716-3.004z"/>
@@ -515,6 +515,7 @@
   <script type="text/javascript" src="javascript/fingerprint.colours.js"></script>  
   <script type="text/javascript" src="javascript/fingerprint.viewsource.js"></script>
   <script type="text/javascript" src="javascript/fingerprint.drawing.js"></script>
+  <script type="text/javascript" src="javascript/fingerprint.offline.js"></script>  
   <script type="text/javascript" src="javascript/fingerprint.application.js"></script>  
   <script type="text/javascript" src="javascript/fingerprint.init.js"></script>        
   

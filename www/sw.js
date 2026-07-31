@@ -1,4 +1,4 @@
-const cache_name = 'fingerprint-v1.0.0b14';
+const cache_name = 'fingerprint-v1.0.0b15';
 // Actual version number is set in index.html
 
 const app_files = [

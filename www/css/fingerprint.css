@@ -110,6 +110,10 @@ footer {
 	display:none;
 }
 
+#purge-cache-button {
+	display:none;
+}
+
 #redo {
 	display: none;
 }

@@ -62,6 +62,8 @@ fingerprint.application = (function(){
                 el.style.display = "flex";
             }
 
+            fingerprint.menu.show_settings_control();
+	    
             window.addEventListener("offline", (e) => {
                 fingerprint.menu.show_offline_control();
             });
@@ -69,7 +71,7 @@ fingerprint.application = (function(){
             window.addEventListener("online", (e) => {
                 fingerprint.menu.hide_offline_control();       
             });
-
+	    
             var offline_scope = document.body.getAttribute("data-offline-scope");
 
             // For the time being this check is enough to determine whether
@@ -78,33 +80,42 @@ fingerprint.application = (function(){
             
             if (offline_scope){
 		
-                offline.application.init(offline_scope);
-                fingerprint.menu.show_settings_control();
-		
-		if (navigator.serviceWorker.controller){
+                offline.application.init(offline_scope).then((rsp) => {;
 
-		    navigator.serviceWorker.controller.postMessage({
-			type: 'GET_CACHE_VERSION',
-		    });
-
-		    navigator.serviceWorker.addEventListener('message', (event) => {
+		    console.debug("Offline application initialized");
+		    
+		    const purge_el = document.querySelector("#purge-cache-button");
+		    purge_el.style.display = "inline-block";
+		    
+		    if (navigator.serviceWorker.controller){
 			
-			console.debug("SW MESSAGE RECEIVED", event);
+			navigator.serviceWorker.controller.postMessage({
+			    type: 'GET_CACHE_VERSION',
+			});
 			
-			if (event.data && event.data.type === 'CACHE_VERSION'){
-
-			    try {
-				const version_el = document.querySelector("#settings-version-sw");
-				version_el.innerText = " (service worker " + event.data.value + ")";
-			    } catch {
-				console.error("Failed to assign SW version", err);
-			    }
+			navigator.serviceWorker.addEventListener('message', (event) => {
 			    
-			}
-		    });
-		} else {
-		    console.warn('No Service Worker controlling this page, unable to determine SW version.');
-		}
+			    console.debug("SW MESSAGE RECEIVED", event);
+			    
+			    if (event.data && event.data.type === 'CACHE_VERSION'){
+				
+				try {
+				    const version_el = document.querySelector("#settings-version-sw");
+				    version_el.innerText = " (service worker " + event.data.value + ")";
+				} catch {
+				    console.error("Failed to assign SW version", err);
+				}
+				
+			    }
+			});
+		    } else {
+			console.warn('No Service Worker controlling this page, unable to determine SW version.');
+		    }
+		    
+		}).catch((err) => {
+		    console.error("Failed to initialize offline application, ", err);
+		    fingerprint.feedback.error("Failed to initialize offline cache, " + err);
+		});
             }
         },
 

@@ -1,3 +1,8 @@
+// fingerprint.raphael.js
+// This is DmitryBaranovskiy/raphael (2.3.0) with the following changes:
+// * createSVGMatric has been replaced by DOMMatrix
+// * createSVGRect has been replaced by DOMRect
+
 // ┌───────────────────────────────────────────────────────────────────────────────────────────────────────┐ \\
 // │ Raphaël 2.3.0 - JavaScript Vector Library                                                             │ \\
 // ├───────────────────────────────────────────────────────────────────────────────────────────────────────┤ \\
@@ -3702,11 +3707,19 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             svg = paper.canvas,
             target = g.doc.elementFromPoint(x, y);
         if (g.win.opera && target.tagName == "svg") {
+	    /*
             var so = getOffset(svg),
                 sr = svg.createSVGRect();
             sr.x = x - so.x;
             sr.y = y - so.y;
             sr.width = sr.height = 1;
+	    */
+
+	    var so = getOffset(svg),
+                sx = x - so.x,
+                sy = y - so.y,
+		sr = new DOMRect(sx, sy, 1, 1);
+	    
             var hits = svg.getIntersectionList(sr, null);
             if (hits.length) {
                 target = hits[hits.length - 1];
@@ -6920,11 +6933,21 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         var cnvs = this.canvas,
             s = cnvs.style,
             pos;
+
+	/*
         try {
             pos = cnvs.getScreenCTM() || cnvs.createSVGMatrix();
         } catch (e) {
             pos = cnvs.createSVGMatrix();
         }
+	*/
+
+	try {
+	    pos = cnvs.getScreenCTM() || new DOMMatrix();
+	} catch (e) {
+	    pos = new DOMMatrix();
+	}
+	
         var left = -pos.e % 1,
             top = -pos.f % 1;
         if (left || top) {

@@ -1,10 +1,10 @@
-/* fingerprint.raphael.sketchpad.js – jQuery‑free version
+/* fingerprint.raphael.sketchpad.js – jQuery‑free version   
  *
  * 0.5.1 – Updated to use native JavaScript only.
  *  Touch events are now fully supported on mobile browsers.
  *
- *  Original code:  fingerprint.raphael.sketchpad-nojq.js
- *  Adapted by:     <your name / date>
+ *  Original code:  https://github.com/ianli/raphael-sketchpad
+ *  Adapted by:     https://github.com/aaronland/fingerprint
  */
 
 ;(function (Raphael) {

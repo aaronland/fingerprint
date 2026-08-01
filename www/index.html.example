@@ -491,7 +491,6 @@
   </body>
 
   <script type="text/javascript" src="javascript/localforage.1.1.0.min.js"></script>
-  <script type="text/javascript" src="javascript/raphael.2.3.0.min.js"></script>
   <script type="text/javascript" src="javascript/FileSaver.2.0.4.min.js"></script>
   <script type="text/javascript" src="javascript/toastify.1.12.0.js"></script>
   <script type="text/javascript" src="javascript/simplify.1.2.4.js"></script>
@@ -500,8 +499,10 @@
 
   <script type="text/javascript" src="javascript/sfomuseum.golang.wasm.bundle.js"></script>
   <script type="text/javascript" src="javascript/offline.application.js"></script>
-  
-  <script type="text/javascript" src="javascript/fingerprint.raphael.sketchpad-nojq.js"></script>
+
+  <!--
+  <script type="text/javascript" src="javascript/fingerprint.raphael.js"></script>    
+  <script type="text/javascript" src="javascript/fingerprint.raphael.sketchpad.js"></script>
   <script type="text/javascript" src="javascript/fingerprint.capabilities.js"></script>
   <script type="text/javascript" src="javascript/fingerprint.feedback.js"></script>
   <script type="text/javascript" src="javascript/fingerprint.menu.js"></script>
@@ -516,7 +517,10 @@
   <script type="text/javascript" src="javascript/fingerprint.viewsource.js"></script>
   <script type="text/javascript" src="javascript/fingerprint.drawing.js"></script>
   <script type="text/javascript" src="javascript/fingerprint.offline.js"></script>  
-  <script type="text/javascript" src="javascript/fingerprint.application.js"></script>  
+  <script type="text/javascript" src="javascript/fingerprint.application.js"></script>
+  -->
+  
+  <script type="text/javascript" src="javascript/fingerprint.1.0.0.min.js"></script>      
   <script type="text/javascript" src="javascript/fingerprint.init.js"></script>        
   
 </html>

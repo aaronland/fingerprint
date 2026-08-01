@@ -1,4 +1,4 @@
-const cache_name = 'fingerprint-v1.0.0b15';
+const cache_name = 'fingerprint-v1.0.0-20260801';
 // Actual version number is set in index.html
 
 const app_files = [
@@ -15,7 +15,6 @@ const app_files = [
     "./javascript/FileSaver.2.0.4.min.js",
     "./javascript/XmlBeautify.1.2.1.min.js",
     "./javascript/localforage.1.1.0.min.js",
-    "./javascript/raphael.2.3.0.min.js",
     "./javascript/toastify.1.12.0.js",
     "./javascript/simplify.1.2.4.js",
     "./javascript/fit-curve.0.1.7.min.js",        
@@ -25,7 +24,8 @@ const app_files = [
     
     // Javascript application
 
-    "./javascript/fingerprint.raphael.sketchpad-nojq.js",    
+    "./javascript/fingerprint.raphael.js",    
+    "./javascript/fingerprint.raphael.sketchpad.js",    
     "./javascript/fingerprint.application.js",
     "./javascript/fingerprint.capabilities.js",
     "./javascript/fingerprint.colours.js",
@@ -35,7 +35,6 @@ const app_files = [
     "./javascript/fingerprint.export.js",
     "./javascript/fingerprint.feedback.js",
     "./javascript/fingerprint.import.js",        
-    "./javascript/fingerprint.init.js",
     "./javascript/fingerprint.menu.js",
     "./javascript/fingerprint.render.js",
     "./javascript/fingerprint.share.js",
@@ -43,6 +42,9 @@ const app_files = [
     "./javascript/fingerprint.offline.js",    
     "./javascript/fingerprint.viewsource.js",
 
+    "./javascript/fingerprint.1.0.0.min.js",    
+    "./javascript/fingerprint.init.js",
+    
     // WASM
 
     "./wasm/update_exif.wasm",

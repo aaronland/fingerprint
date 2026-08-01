@@ -165,6 +165,18 @@ The goal for the application is to develop the ability to:
 
 Suggestions, or contributions, on how to implement any of these features is welcomed.
 
+## Development
+
+This package uses (local) modified versions of the following JavaScript libraries:
+
+### DmitryBaranovskiy/raphael
+
+This library has been updated to replace the use of `svgCreateRect` and `svgCreateMatrix` with `DOMRect` and `DOMMatrix` respectively.
+
+### ianli/raphael-sketchpad
+
+This library has been updated to remoce the dependency on `jQuery` and to support the use of `mourner/simplify-js` and `soswow/fit-curve`.
+
 ## See also
 
 ### JavaScript
@@ -187,8 +199,11 @@ Suggestions, or contributions, on how to implement any of these features is welc
 
 ### WebAssembly (WASM)
 
-* https://github.com/sfomuseum/go-exif-update/
-* https://github.com/sfomuseum/go-http-wasm/tree/main/static/javascript
+* https://github.com/sfomuseum/js-sfomuseum-golang-wasm
+
+### Offline
+
+* https://github.com/aaronland/js-offline-application
 
 ### Graphic design
 

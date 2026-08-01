@@ -1,30 +1,30 @@
-const cache_name = 'fingerprint-v0.0.38';
-// Remember to keep this in sync with the version number in index.html
+const cache_name = 'fingerprint-v1.0.0-20260801';
+// Actual version number is set in index.html
 
 const app_files = [
     // HTML
     "./index.html",
     
     // CSS
-    "./css/bootstrap.min.css",
+    "./css/bootstrap.5.3.8.min.css",
     "./css/fingerprint.css",
-    "./css/toastify.min.css",
+    "./css/toastify.1.12.0.min.css",
     
     // Javascript dependencies
     
-    "./javascript/FileSaver.min.js",
-    "./javascript/XmlBeautify.js",
-    "./javascript/jquery-3.6.3.min.js",
-    "./javascript/localforage.min.js",
-    "./javascript/raphael.min.js",
-    "./javascript/toastify.js",
-    "./javascript/simplify.js",
-    "./javascript/fit-curve.min.js",        
-    "./javascript/wasm_exec.js",
-    "./javascript/sfomuseum.wasm.js",
+    "./javascript/FileSaver.2.0.4.min.js",
+    "./javascript/XmlBeautify.1.2.1.min.js",
+    "./javascript/localforage.1.1.0.min.js",
+    "./javascript/toastify.1.12.0.js",
+    "./javascript/simplify.1.2.4.js",
+    "./javascript/fit-curve.0.1.7.min.js",        
+
+    "./javascript/sfomuseum.golang.wasm.bundle.js",
+    "./javascript/offline.application.js",
     
     // Javascript application
 
+    "./javascript/fingerprint.raphael.js",    
     "./javascript/fingerprint.raphael.sketchpad.js",    
     "./javascript/fingerprint.application.js",
     "./javascript/fingerprint.capabilities.js",
@@ -35,14 +35,16 @@ const app_files = [
     "./javascript/fingerprint.export.js",
     "./javascript/fingerprint.feedback.js",
     "./javascript/fingerprint.import.js",        
-    "./javascript/fingerprint.init.js",
     "./javascript/fingerprint.menu.js",
-    "./javascript/fingerprint.offline.js",
     "./javascript/fingerprint.render.js",
     "./javascript/fingerprint.share.js",
     "./javascript/fingerprint.storage.js",
+    "./javascript/fingerprint.offline.js",    
     "./javascript/fingerprint.viewsource.js",
 
+    "./javascript/fingerprint.1.0.0.min.js",    
+    "./javascript/fingerprint.init.js",
+    
     // WASM
 
     "./wasm/update_exif.wasm",
@@ -50,6 +52,17 @@ const app_files = [
     // Javascript service workers
     "./sw.js"    
 ];
+
+self.addEventListener('message', (event) => {
+
+    if (event.data && event.data.type === 'GET_CACHE_VERSION') {
+	
+	event.source.postMessage({
+	    type: 'CACHE_VERSION',
+	    value: cache_name,
+	});
+    }
+});
 
 self.addEventListener("install", (e) => {
 

@@ -99,6 +99,7 @@ fingerprint.export = (function(){
 				"DateTime": date,
 				"DateTimeOriginal": date,
 				"DateTimeDigitized": date,
+				"Software": "fingerprint",
 			    };
 			}
 

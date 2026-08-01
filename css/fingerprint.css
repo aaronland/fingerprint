@@ -110,8 +110,27 @@ footer {
 	display:none;
 }
 
+#purge-cache-button {
+	display:none;
+}
+
 #redo {
 	display: none;
+}
+
+#settings-version-wrapper {
+	margin-left: .75rem;
+	margin-bottom: .5rem;
+}
+
+#settings-version {
+	font-weight:700;
+}
+
+#settings-version-sw {
+	font-weight: initial;
+	font-size: small;
+	font-family:monospace;
 }
 
 #share-dialog-exif-wrapper {
@@ -185,4 +204,24 @@ footer {
 	#show-colour-picker {
 		padding-top:.6rem;
 	}
+
+	#settings-version-wrapper {
+		margin-left: 1rem !important;
+	}
+}
+
+/* Big honking phones */
+
+@media (width: 428px) or (width: 390px) or (width: 393px) or (width: 430px){
+
+    footer {
+        padding-bottom: 2.35vh;
+        padding-right: 5.5vw;
+
+    }
+
+    #footer-menu {
+        left:6.25vw;
+        bottom:3.3vh;
+    }
 }
